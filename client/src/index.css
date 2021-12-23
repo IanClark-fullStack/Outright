@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Outright";
+  
+  src: url("./assets/font/OutRightTest.woff2")
+  format("woff2"),
+url("./assets/font/OutRightTest.woff")
+  format("woff");
+  font-weight: 100 900;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 250ms linear;
+	font-variation-settings: 'wght' 900;
+}
+
+.code {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-weight: 900;
+  color: #000;
+}
+.new {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 600 ;
+  color: #000;
+}
