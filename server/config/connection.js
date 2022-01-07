@@ -5,6 +5,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/outright_db', {
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
+    
 });
 
 module.exports = mongoose.connection;

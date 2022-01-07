@@ -5,7 +5,9 @@
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
-        "watch": "nodemon server.js"
+        "watch": "nodemon",
+        "seed": "node config/seeds.js",
+        "collect-seeds": "node config/collectseeds.js"
     },
     "keywords": [],
     "author": "",
@@ -13,10 +15,15 @@
     "dependencies": {
         "apollo-server-express": "^2.15.0",
         "bcrypt": "^4.0.1",
+        "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.9.10"
+        "mongoose": "^5.9.10",
+        "node-fetch": "^2.6.6",
+        "papaparse": "^5.3.1",
+        "request": "^2.88.2",
+        "scramjet": "^4.36.1"
     },
     "devDependencies": {
         "nodemon": "^2.0.3"
