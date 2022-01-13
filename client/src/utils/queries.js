@@ -9,11 +9,11 @@ export const QUERY_USER = gql`
             _id
             state {
                 _id
-                name
+                state_name
             }
             county {
                 _id 
-                name
+                county_name
             }
         }
     }
@@ -26,11 +26,11 @@ export const QUERY_LOCATION = gql`
             _id
             state {
                 _id
-                name
+                state_name
             }    
             county {
                 _id 
-                name
+                county_name
             }
         }
     }

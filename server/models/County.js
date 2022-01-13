@@ -5,9 +5,9 @@ const CountyData = require('./CountyData');
 
 const countySchema = new Schema(
     {
-        name: {
+        county_name: {
             type: String,
-            required: true,
+            // required: true,
         }, 
         county_data: [
             {

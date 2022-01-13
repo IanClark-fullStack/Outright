@@ -15,7 +15,7 @@ const countyDataSchema = new Schema(
         jail_population: {
             type: Number, 
         },
-        name: {
+        county_name: {
             type: String,
         }, 
         state_name: {

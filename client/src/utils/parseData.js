@@ -1,19 +1,30 @@
 import { readRemoteFile } from 'react-papaparse';
 
-export const getCountyData = (url, county, state) => {
-    if (county && state) {
-            readRemoteFile(url, {
+// export const getCountyData = (url, county, state) => {
+//     if (county && state) {
+//             readRemoteFile(url, {
+//                 complete: (results) => {
+//                     // console.log("Row data:", results.data);
+//                     return getRelevantData(results.data, county, state);
+                    
+//                 },  
+                
+//             })
+//     } else {
+//         console.log('loading...')
+//     }
+// }
+const parseFile = () => new Promise((resolve) => {
+            readRemoteFile(`https://raw.githubusercontent.com/vera-institute/jail-population-data/master/jail_population.csv`, {
                 complete: (results) => {
                     // console.log("Row data:", results.data);
-                    return getRelevantData(results.data, county, state);
-                    
+                    resolve(results.data); 
                 },  
-                
             })
-    } else {
-        console.log('loading...')
-    }
-}
+});
+
+
+
 
 // Using full state data array and County names 
 const findOnlyOne = (fullArr, counties) => {
@@ -23,7 +34,7 @@ const findOnlyOne = (fullArr, counties) => {
     for (let i = 0; i < counties.length; i++) {
         let currRow = counties[i]; 
         // Create a call back function to return the first occurence of the county name within state data
-        const doesMatch = (row) => row.name === currRow;
+        const doesMatch = (row) => row.county_name === currRow;
         // Push Indexes to an Array 
         indexArr.push(fullArr.findIndex(doesMatch));
     }
@@ -96,36 +107,37 @@ const findOnlyOne = (fullArr, counties) => {
     
 
 
-const getRelevantData = async (res, county, state) => {
-    let resultingJailData = { countySpecificData: undefined, stateSpecificData: undefined };
-    let finalRes = [];
-    let countyArea = [];
-    let stateArea = [];
-    let countyData = {};
-    let stateData = {};
-    let countyNameArr = []
+export const getRelevantData = async (county, state) => {
     try {
-            for (let i = 0; i < res.length; i++) {
-                let currentRow = res[i];
+        const parsedData = await parseFile();
+        let resultingJailData = { countySpecificData: undefined, stateSpecificData: undefined };
+        let finalRes = [];
+        let countyArea = [];
+        let stateArea = [];
+        let countyData = {};
+        let stateData = {};
+        let countyNameArr = []
+            for (let i = 0; i < parsedData.length; i++) {
+                let currentRow = parsedData[i];
                 if (currentRow.includes(county) && currentRow.includes(state)) {
                     
-                    const [flip_code, last_update, jail_population, name, state_name, place_type, title, resident_population, incarceration] = await currentRow;
+                    const [flip_code, last_update, jail_population, county_name, state_name, place_type, title, resident_population, incarceration] = await currentRow;
 
                     // Create County Specific Data in Object Structure
-                    countyData = await {flip_code: Number(flip_code), last_update, jail_population: Number(jail_population), name, state_name, place_type, title, resident_population: Number(resident_population), incarceration: Number(incarceration)};
+                    countyData = await {flip_code: Number(flip_code), last_update, jail_population: Number(jail_population), county_name, state_name, place_type, title, resident_population: Number(resident_population), incarceration: Number(incarceration)};
                     
                     
                     countyArea.push(countyData);
                     
                 } else if (currentRow.includes(state)) {
                     // Each in array format
-                    const [flip_code, last_update, jail_population, name, state_name, place_type, title, resident_population, incarceration] = await currentRow;
+                    const [flip_code, last_update, jail_population, county_name, state_name, place_type, title, resident_population, incarceration] = await currentRow;
                     
                     // Create County Specific Data in Object Structure
-                    stateData = await {flip_code: Number(flip_code), last_update, jail_population: Number(jail_population), name, state_name, place_type, title, resident_population: Number(resident_population), incarceration: Number(incarceration)};
+                    stateData = await {flip_code: Number(flip_code), last_update, jail_population: Number(jail_population), county_name, state_name, place_type, title, resident_population: Number(resident_population), incarceration: Number(incarceration)};
 
                     // Push all County Objects to an Array 
-                    if (!stateArea.includes(stateData.name)) {
+                    if (!stateArea.includes(stateData.county_name)) {
                         stateArea.push(stateData);
                     }
                 } 
@@ -133,8 +145,8 @@ const getRelevantData = async (res, county, state) => {
             };
             // Creating an Array of Each County Name 
             stateArea.map((el) => {
-                if (countyNameArr.indexOf(el.name) === -1) {
-                    return countyNameArr.push(el.name);
+                if (countyNameArr.indexOf(el.county_name) === -1) {
+                    return countyNameArr.push(el.county_name);
                 } else { 
                     return
                 }
@@ -142,11 +154,11 @@ const getRelevantData = async (res, county, state) => {
 
             // let sortData = array.slice();
             const sortedCounties = await stateArea.sort((a, b) => {
-                if (a.state_name === b.state_name && a.name === b.name) { 
+                if (a.state_name === b.state_name && a.county_name === b.county_name) { 
                     let xDate = new Date(a.last_update);
                     let yDate = new Date(b.last_update);
                     if (xDate > yDate) {
-                        // console.log(`county a: ${a.name} updated at ${a.last_update}`)
+                        // console.log(`county a: ${a.county_name} updated at ${a.last_update}`)
                         return -1;
                     } else {
                         // console.log(`county b: ${b} updated at ${b.last_update}`)
@@ -155,15 +167,17 @@ const getRelevantData = async (res, county, state) => {
                 }
             })
     
-            // console.log(sortedCounties)
+            console.log(sortedCounties)
             // Sort the State Array by Date (Most Recent)
             // const sortedCounties = await findLastUpdated(stateArea);
 
             
             // Pass in the Complete State Data (Arrray), And array of county Names (Array)
             const stateCounties = await findOnlyOne(sortedCounties, countyNameArr);
-            console.log({ stateData: [...stateCounties], countyData: countyArea[0] })
-            return resultingJailData = { stateData: [...stateCounties], countyData: countyArea[0] };
+            const resultData = { stateCounties, county: countyArea[countyArea.length - 1] }
+            return resultData;
+            // console.log({ stateData: [...stateCounties], countyData: countyArea[0] })
+            // return resultingJailData = await { stateData: [...stateCounties], countyData: countyArea[0] };
         
             
         
@@ -185,7 +199,8 @@ const getRelevantData = async (res, county, state) => {
     } catch (err) {
         console.log(err);
     }
-    console.log(resultingJailData);
+    // console.log(resultingJailData);
+    // return resultData; 
 }
 
 

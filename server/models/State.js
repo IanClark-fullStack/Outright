@@ -5,7 +5,7 @@ const County = require('./County');
 
 const stateSchema = new Schema(
     {
-        name: {
+        state_name: {
             type: String,
             required: true,
         }, 

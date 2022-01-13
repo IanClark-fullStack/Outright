@@ -33,17 +33,17 @@ const resolvers = {
             const counties = {}; 
             if (countyId && county_name) {
                 counties.countyId = countyId;
-                counties.name = county_name;
+                counties.county_name = county_name;
             }
-            return await County.find({ _id: countyId, name: county_name }).sort({ last_updated: -1 });
+            return await County.find({ _id: countyId, county_name: county_name }).sort({ last_updated: -1 });
         }, 
-        countydata: async (parent, { county_name }, context) => {
-            const counties = {}; 
-            if (county_name) {
-                counties.name = county_name;
-            }
-            return await CountyData.find({ county_name: county_name }).sort({ last_updated: -1 });
-        }, 
+        // countydata: async (parent, { county_name, state_name, last_update }, context) => {
+        //     const counties = {}; 
+        //     if (county_name && ) {
+        //         counties.name = county_name;
+        //     }
+        //     return await CountyData.find({ county_name: county_name }).sort({ last_updated: -1 });
+        // }, 
 
         // jail: async (parent, args, context) => {
         //     if (context.user) {
@@ -52,8 +52,8 @@ const resolvers = {
         // }
     },
     Mutation: {
-        addUser: async (parent, { _id }) => {
-            const user = await User.create({ _id });
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
             const token = signToken(user);
             return { token, user };
         },
@@ -64,34 +64,27 @@ const resolvers = {
         //     }
         //     throw new AuthenticationError('No User');
         // },
+        // addCounty: async (parent, { name }, context) => {
+        //     const county = County.create({ name });
+        //     return county;
+        // },
 
-        addCountyData: async (parent, { countyId, county_name }, context) => {
-            if (context.user) {
-                return County.findByIdAndUpdate(
-                    { _id: countyId, name: county_name  },
-                    { 
-                        $addToSet: {
-                            county_data: {
-                                flip_code,
-                                last_update,
-                                jail_population,
-                                county_name, 
-                                state_name, 
-                                place_type, 
-                                title,
-                                resident_population,
-                                incarceration,
-                            }
-                        }
-                    },
-                    {
-                        new: true, 
-                        runValidators: true,
-                    }
+        addCountyData: async (parent, args, context) => {
+            // if (context.user) {
+                const county = await CountyData.create({...args});
+                await County.create(
+                    { county_name: county.county_name },
+                    { $addToSet: { county_data: county._id  }},
+                    { new: true, runValidators: true, }
                 );
-            }
-            throw new AuthenticationError('No User');
+                return county;
+                
+
+                //     
+            // }
+            // throw new AuthenticationError('No User');
         },
+        
 
         addLocation: async (parent, args, context) => {
             if (context.user) {

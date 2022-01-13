@@ -4,7 +4,9 @@ export const ADD_USER = gql`
     mutation addUser($_id: ID) {
         addUser(_id: $_id) {
         token
-        
+        user {
+            _id
+        }
     }
 }
 `;
@@ -16,33 +18,31 @@ export const ADD_LOCATION = gql`
             _id
             state {
                 _id
-                name
+                state_name
             }
             county {
                 _id
-                name
+                county_name
             }
         }
     }
 `;
 
 export const ADD_COUNTY_DATA = gql`
-    mutation addCountyData($countyId: ID!, $county_name: String!) {
-        addCountyData(countyId: $countyId, county_name: $county_name) {
+    mutation addCountyData($state_name: String!, $county_name: String!, $last_update: String, $flip_code: Int, $jail_population: Int, $place_type: String, $title: String, $resident_population: Int, $incarceration: Float ) {
+
+        addCountyData(state_name: $state_name, county_name: $county_name, last_update: $last_update, flip_code: $flip_code, jail_population: $jail_population, place_type: $place_type, title: $title, resident_population: $resident_population, incarceration: $incarceration) {
             _id
-            name 
-            county_data {
-                _id
-                flip_code,
-                last_update,
-                jail_population,
-                county_name, 
-                state_name, 
-                place_type, 
-                title,
-                resident_population,
-                incarceration,
-            }
+            flip_code,
+            last_update,
+            jail_population,
+            county_name, 
+            state_name, 
+            place_type, 
+            title,
+            resident_population,
+            incarceration,
+            
         }
     }
 `;
