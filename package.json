@@ -9,7 +9,8 @@
         "install": "cd server && npm i && cd ../client && npm i",
         "seed": "cd server && npm run seed",
         "collect-seeds": "cd server && npm run collect-seeds",
-        "build": "cd client && npm run build"
+        "build": "cd client && npm run build",
+        "date": "cd server && npm run date-format"
     },
     "keywords": [],
     "author": "",

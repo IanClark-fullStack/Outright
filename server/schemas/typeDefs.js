@@ -11,6 +11,7 @@ const typeDefs = gql`
     type Location {
         _id: ID! 
         state: State
+        county: County
     }
 
     type State {
@@ -21,26 +22,34 @@ const typeDefs = gql`
     }
 
     type StateData {
-        _id: ID! 
-        last_updated: String
-        jail_population: Int 
-        resident_population: Int
-        incarceration: Int
+        _id: ID!, 
+        flip_code: Int,
+        last_update: String, 
+        jail_population: Int, 
+        county_name: String, 
+        state_name: String, 
+        place_type: String, 
+        title: String, 
+        resident_population: Int, 
+        incarceration: Int,
     }
+
     type County {
-        _id: ID! 
+        _id: ID 
         name: String
         county_data: [CountyData]
     }
     type CountyData {
         _id: ID! 
-        flip_code: String
-        last_updated: String
-        jail_population: Int 
-        name: String,
-        title: String,
-        resident_population: Int
-        incarceration: Int
+        flip_code: Int,
+        last_update: String, 
+        jail_population: Int, 
+        county_name: String, 
+        state_name: String, 
+        place_type: String, 
+        title: String, 
+        resident_population: Int, 
+        incarceration: Int,
     }
 
     type Auth {
@@ -50,20 +59,21 @@ const typeDefs = gql`
 
     type Query {
         user: User
-        location(_id: ID!, state_name: String): Location
-        state(state_name: String): [County]
-        county(name: String) : County
-        
-
+        location(state_name: String, county_name: String): Location
+        counties(_id: ID, county_name: String): [County]!
+        state(state_name: String): State
+        county(county_name: String) : County 
+        countydata(county_name: String, state_name: String, last_update: String) : [County] 
+        me: User
         
         # jail(_id: ID!, state_name: String!): Jail
     }
 
     type Mutation {
-        addUser(_id: ID!, email: String): Auth 
-        updateUser(_id: ID!, location: String): User
-        addLocation(_id: ID!, state_name: String!): User
-        addCountyData(state_name: String): [CountyData]
+        addUser(_id: ID): Auth 
+        # updateUser(_id: ID!, location: String): User
+        addLocation(userId: ID!, state_name: String!, county_name: String!): User
+        addCountyData(state_name: String, state_name: String, last_update: String): [CountyData]
         # addJailData(_id: ID!, state_name: String!): Jail
     }
 

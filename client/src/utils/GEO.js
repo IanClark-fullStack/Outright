@@ -55,12 +55,9 @@ const findUserData = res => {
         .reduce((comps, res) => comps.concat(res.address_components[0]), [])
         .filter((el) => {
             if (el.types.includes('locality') || el.types.includes('administrative_area_level_2') || el.types.includes('administrative_area_level_1')) {
-                return el;
+                return el.long_name;
             }
         })
-        matchCounty = newResult[1].short_name;
-        matchCity = newResult[0].short_name;
-        matchState = newResult[2].long_name;
         console.log(newResult);
         return newResult;
         
@@ -68,53 +65,10 @@ const findUserData = res => {
         throw new Error(`Cannot get country code from Google Maps response`);
     }
 }
-const getRelevantData = (newdata) => {
-    
-    
-    const date=new Date();
-    date.setDate(date.getDate() - 2);
-    let dateYesterday = date.toISOString().split('T')[0].toString();
-    // console.log(dateYesterday);
-    let area = [];
-    let stateArea = [];
-    let countyArea = [];
-    for (let i = 0; i < newdata.length; i++) {
-
-        if (newdata[i].includes(matchCounty) && newdata[i].includes(matchState)) {
-            countyArea.push(newdata[i]);
-        
-        } else if (newdata[i].includes(matchState)) {
-            stateArea.push(newdata[i]);
-            // Each in array format
-            const [flip_code, last_update, jail_population, name, state_name, place_type, title, resident_population, incarceration] = newdata[i];
-            // Check for the Last Occurence of the County Name 
-            const countyData = {flip_code: Number(flip_code), last_update, jail_population: Number(jail_population), name, state_name, place_type, title, resident_population: Number(resident_population), incarceration: Number(incarceration) };
-            console.log(countyData)
-            
-        }
-    }
-    
-    for (const county of stateArea) {
-        // console.log(`State County data: ${county}`)
-    }
-    console.log(`Your Location -- Last Updated at: ${countyArea[countyArea.length -1]}`);
-    // console.log(stateArea);
-        
-}
-
-const getData = matchLocation => {
-    readRemoteFile(`https://raw.githubusercontent.com/vera-institute/jail-population-data/master/jail_population.csv`, {
-        complete: (results, file) => {
-            return getRelevantData(results.data)
-            // console.log("Row data:", results.data);
-        }   
-    })
-    
-}
 
 
 export const browserLocation = apiKey => () => geoLocate()
-    .then(findAddress(process.env.REACT_APP_GEO)).then(findUserData).then(getData);
+    .then(findAddress(process.env.REACT_APP_GEO)).then(findUserData);
 
 
 // export function idbPromise(storeName, method, object) {

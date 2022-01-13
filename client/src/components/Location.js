@@ -6,36 +6,60 @@ import JailData from '../components/JailData';
 // import { readRemoteFile } from 'react-papaparse'
 import { geoLocate } from '../utils/GEO';
 import { getData } from '../utils/API';
+// Import the `useMutation()` hook from Apollo Client
+import { useMutation } from '@apollo/client';
+// Import the GraphQL mutation
+import { ADD_USER } from '../utils/mutations';
+// Import Auth to Apply idToken to User
+import Auth from '../utils/Auth';
+
 import { browserLocation } from '../utils/GEO';
+
 export default function Location() {
+    const [userCoords, setUserCoords] = useState({
+        loading: true,
+        location: undefined,
+        stateLocation: undefined,
+        countyLocation: undefined,
+        error: undefined,
+    });
+
+    
+    
     const useLocation = detector => {
-        const [userCoords, setUserCoords] = useState({
-            loading: true,
-            location: undefined,
-            userState: undefined,
-            userCounty: undefined,
-            error: undefined,
-        });
+        
     
         useEffect(() => {
-
             // Promise.resolve(detector())
-            // .then(location => setUserCoords({ loading: false, location, userState: location[0].long_name, userCounty: location[1].long_name }))
+            // .then(location => setUserCoords({ loading: false, location, stateLocation: location[0].long_name, countyLocation: location[1].long_name }))
             // .catch(error => setUserCoords({ loading: false, error }));
             Promise.resolve(detector())
-            .then(location => setUserCoords({ loading: false, location }))
+            .then(location => setUserCoords({ loading: false, location, countyLocation: location[1].long_name, stateLocation: location[2].long_name }))
             .catch(error => setUserCoords({ loading: false, error }));
         }, []);
     
         return userCoords;
     };
     const findLocation = useLocation(browserLocation('AIzaSyC8VG5_qdxhjBO5_-5yw2gVUGOGDguefME'));
+
     console.log(findLocation);
+
+    // if (userCoords) { 
+    //     handleAddUser();
+    // };
+    
 
     return (
         <>
-        {/* <p>{{findLocation.location}}</p> */}
+            {!userCoords ? (
+                <div>Loading...</div>
+            ) : (
+                // If we are not loading, render the profiles list
+                // Passing back the profiles and title prop to the Component
+                <Title userCoords={userCoords} />
+            )}
         </>
+
     )
 
 } 
@@ -44,11 +68,11 @@ export default function Location() {
 
 // const Location = (props) => {    
 //     const [currLocation, setCurrLocation] = useState(''); 
-//     const [userCounty, setUserCounty] = useState('');
+//     const [countyLocation, setcountyLocation] = useState('');
 //     const [stateData, setStateData] = useState([]);
-//     const [userLocationData, setUserLocationData] = useState({ userCounty: '', userState: '' });
-//     const changeLocationData = (currentCounty, currentState ) => setUserLocationData({ userCounty: currentCounty, userState: currentState });
-//     const changeCountyName = (currentCounty) => setUserCounty(currentCounty);
+//     const [userLocationData, setUserLocationData] = useState({ countyLocation: '', stateLocation: '' });
+//     const changeLocationData = (currentCounty, currentState ) => setUserLocationData({ countyLocation: currentCounty, stateLocation: currentState });
+//     const changeCountyName = (currentCounty) => setcountyLocation(currentCounty);
 //     let stateName = '';
 //     const findState = async (latValue, longValue) => {
 //         try {
@@ -68,7 +92,7 @@ export default function Location() {
 //             // Split to Array 
 //             stateName = responseObj.results[0].address_components[5].long_name;
 //             return changeLocationData(resultingCounty, stateName);
-//             // console.log(userCounty);
+//             // console.log(countyLocation);
 //             // return setQueryString(`http://www.sentencingproject.org/the-facts/#detail?state1Option=${currLocation}%20Total&state2Option=${comparisonStateLocation}`);
 
 //         } catch (err) {
@@ -89,7 +113,7 @@ export default function Location() {
     //         {props.coords ? 
     //             <>
                     {/* {loadStart()} */}
-                    // <Title props={userLocationData} setCurrLocation={findState(props.coords.latitude, props.coords.longitude)} />
+                    
                     
                     {/* <JailStat currLocation={currLocation} queryString={queryString}/>  */}
                     {/* <JailData currLocation={currLocation} /> */}

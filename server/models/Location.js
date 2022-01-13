@@ -10,6 +10,11 @@ const locationSchema = new Schema(
             ref: 'State',
             required: true,
         }, 
+        county: {
+            type: Schema.Types.ObjectId, 
+            ref: 'County',
+            required: true,
+        }, 
         // jail_data: {
         //     type: Schema.Types.ObjectId, 
         //     ref: 'Jail',

@@ -11,8 +11,8 @@ const countySchema = new Schema(
         }, 
         county_data: [
             {
-            type: Schema.Types.ObjectId,
-            ref: 'CountyData'
+                type: Schema.Types.ObjectId,
+                ref: 'CountyData'
             }
         ],
     },

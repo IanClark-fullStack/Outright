@@ -14,8 +14,12 @@ const stateSchema = new Schema(
             ref: 'StateData',
             required: true,
         },
-
-        counties:[County.schema]
+        counties: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'County'
+            }
+        ],
     },
     // {
     //     toJSON: {
