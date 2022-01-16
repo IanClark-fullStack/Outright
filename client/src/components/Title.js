@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../index.css';
 import { readRemoteFile } from 'react-papaparse';
+import StickyNav from '../components/StickyNav';
+import outrightHeader from '../assets/images/outright-header.png';
 import { useMutation } from '@apollo/client';
 import { ADD_COUNTY_DATA } from '../utils/mutations';
 import { getRelevantData } from '../utils/parseData';
@@ -150,6 +152,23 @@ export default function Title({userCoords}) {
     // const rows = getCountyData(url);
     return (
         <>
+        <StickyNav userCoords={userCoords} countyData={countyData} />
+        <img src={outrightHeader} className='headerImg' alt="logo" /> 
+        <div className='infoContainer'>
+            <a 
+                className={userCoords.loading ? 'titleHeading fontAverage1' : 'titleHeading fontMinusEight' }  
+                // style={{fontWeight: "900"}}
+                href="https://reactjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                OUTRIGHT*
+            </a>
+            <p className='introBlock'>OUTRIGHT is an open source headline-inspired typeface whose appearance is determined by local incarceration numbers.<br /> It can only be changed by actionable work in your community.</p>
+        </div>
+        
+
+
         {userCoords.loading === true ? (
                 <div style={{backgroundColor: "#fff"}} 
                 onMouseEnter={() => handleAddUser()}
@@ -185,10 +204,10 @@ export default function Title({userCoords}) {
                            
                             { stateData.map((state, index) => 
                             <>
-                                <li key={index} style={{fontSize: "16px"}}> {state.county_name} </li>
-                                <li key={index}> Last Updated at: {state.last_update} </li>
-                                <li key={index}>Population of {state.jail_population} inmates</li>
-                                <li key={index}> Incarceration Rate {state.incarceration} inmates</li>
+                                <li key={state.flip_code} style={{fontSize: "16px"}}> {state.county_name} </li>
+                                <li key={state.id}> Last Updated at: {state.last_update} </li>
+                                <li key={state.jail_population.toString()}>Population of {state.jail_population} inmates</li>
+                                <li key={state.incarceration.toString()}> Incarceration Rate {state.incarceration} inmates</li>
                                 <li key={index} style={{fontSize: "12px"}}> In comparison to the total resident population in {state.county_name} of {state.resident_population}, the rate is determined per 100,000 residents. </li>
                                 </>
                             )}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { geolocated } from "react-geolocated";
-import Title from '../components/Title'
+import Title from '../components/Title';
 import JailData from '../components/JailData';
 // import { searchData } from '../utils/API';
 // import { readRemoteFile } from 'react-papaparse'
@@ -9,9 +9,9 @@ import { getData } from '../utils/API';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
 // Import the GraphQL mutation
-import { ADD_USER } from '../utils/mutations';
+
 // Import Auth to Apply idToken to User
-import Auth from '../utils/Auth';
+
 
 import { browserLocation } from '../utils/GEO';
 
@@ -24,7 +24,7 @@ export default function Location() {
         error: undefined,
     });
 
-    
+
     
     const useLocation = detector => {
         
@@ -43,6 +43,8 @@ export default function Location() {
     const findLocation = useLocation(browserLocation('AIzaSyC8VG5_qdxhjBO5_-5yw2gVUGOGDguefME'));
 
     console.log(findLocation);
+    
+
 
     // if (userCoords) { 
     //     handleAddUser();
@@ -51,6 +53,7 @@ export default function Location() {
 
     return (
         <>
+        
             {!userCoords ? (
                 <div>Loading...</div>
             ) : (

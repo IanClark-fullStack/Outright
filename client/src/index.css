@@ -1,33 +1,125 @@
 @font-face {
   font-family: "Outright";
-  
-  src: url("./assets/font/OutRightTest.woff2")
+  src: url("./assets/font/OutRight-Variable.woff")
   format("woff2"),
-url("./assets/font/OutRightTest.woff")
+  url("./assets/font/OutRight-Variable.woff")
   format("woff");
   font-weight: 100 900;
 }
 
-body {
+.fontTransition {
   margin: 0;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: all 250ms linear;
-	font-variation-settings: 'wght' 900;
 }
 
-.code {
+body {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  background: #fff;
+}
+.font {
+  transition: all 250ms linear;
+}
+.fontAverage1 {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  
+  
+	font-weight: 900;
+  
+  color: #000;
+}
+
+.fontMinusOne {
   font-family: 'Outright';
   /* font-weight: 00; */
   /* transition: all 250ms linear; */
-	font-weight: 900;
+	font-variation-settings: 'wght' 800 ;
   color: #000;
 }
-.new {
+
+.fontMinusTwo {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 700 ;
+  color: #000;
+}
+.fontMinusThree {
   font-family: 'Outright';
   /* font-weight: 00; */
   /* transition: all 250ms linear; */
 	font-variation-settings: 'wght' 600 ;
   color: #000;
+}
+.fontMinusFour {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 500 ;
+  color: #000;
+}
+.fontMinusFive {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 400 ;
+  color: #000;
+}
+.fontMinusSix {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 300 ;
+  color: #000;
+}
+.fontMinusSeven{
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 200 ;
+  color: #000;
+}
+.fontMinusEight {
+  font-family: 'Outright';
+  font-weight: 00;
+  transition: all 250ms linear; 
+	font-variation-settings: 'wght' 100 ;
+  color: #000;
+}
+
+.sourceNumber {
+  font-size: 0.45rem;
+}
+.preHeader {
+  text-align: center;
+}
+
+.preHeader p {
+  display: inline-block;
+  text-align: center;
+}
+
+.headerImg {
+  background-size: cover;
+  max-width: 100%;
+}
+
+.infoContainer {
+  max-width: 75%;
+}
+.titleHeading {
+  font-size: 12rem;
+  text-align: left;
+}
+
+.introBlock {
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 12px;
+  
 }

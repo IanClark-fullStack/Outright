@@ -74,6 +74,7 @@ const typeDefs = gql`
         # updateUser(_id: ID!, location: String): User
         addLocation(userId: ID!, state_name: String!, county_name: String!): User
         addCountyData(state_name: String, county_name: String, last_update: String, flip_code: Int, jail_population: Int, place_type: String, title: String, resident_population: Int, incarceration: Float): CountyData
+        addStateData(state_name: String!, jail_population: Int,  
         # addJailData(_id: ID!, state_name: String!): Jail
     }
 
