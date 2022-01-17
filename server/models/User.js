@@ -12,7 +12,13 @@ const userSchema = new Schema(
             type: String,
             unique: true,
             match: [/.+@.+\..+/, 'Must use a valid email address'],
+        },
+        state: {
+            type: Schema.Types.ObjectId, 
+            ref: 'State',
+            // required: true,
         }, 
+        
         location: 
             {
                 type: Schema.Types.ObjectId, 

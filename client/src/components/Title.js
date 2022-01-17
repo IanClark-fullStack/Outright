@@ -155,15 +155,15 @@ export default function Title({userCoords}) {
         <StickyNav userCoords={userCoords} countyData={countyData} />
         <img src={outrightHeader} className='headerImg' alt="logo" /> 
         <div className='infoContainer'>
-            <a 
-                className={userCoords.loading ? 'titleHeading fontAverage1' : 'titleHeading fontMinusEight' }  
+            <h1 
+                className={userCoords.loading ? 'titleHeading baseFont' : 'titleHeading fontAverage1' }  
                 // style={{fontWeight: "900"}}
                 href="https://reactjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                OUTRIGHT*
-            </a>
+                OUTRIGHT *
+            </h1>
             <p className='introBlock'>OUTRIGHT is an open source headline-inspired typeface whose appearance is determined by local incarceration numbers.<br /> It can only be changed by actionable work in your community.</p>
         </div>
         
@@ -173,9 +173,9 @@ export default function Title({userCoords}) {
                 <div style={{backgroundColor: "#fff"}} 
                 onMouseEnter={() => handleAddUser()}
                         onMouseLeave={() => setShouldChange(false)}>
-                    <h1 className={shouldChange ? 'new' : 'code' }> 
+                    <h4 className={shouldChange ? 'new' : 'code' }> 
                     loading location 
-                    </h1>
+                    </h4>
                 </div>
             ) : (
 
@@ -183,32 +183,34 @@ export default function Title({userCoords}) {
                 {countyData.loading === true ? (
                     
                     <div style={{backgroundColor: "#fff", color: "#000"}}>
-                        <h1> 
+                        <h4> 
                             loading statistics
-                        </h1>
+                        </h4>
                     </div>
                 ) : (
                 <>
                     <div style={{backgroundColor: "#fff", color: "#000", textAlign: "left"}}>
-                        <h1 onClick={handleCountyChange}>Your County {countyData.county_name}</h1>
+                        <h4 onClick={handleCountyChange}>Displaying :  {countyData.county_name}</h4>
+                        <h4>{countyData.title}</h4>
                         <ul> 
+                           
                             <li>Last Updated at: {countyData.last_update}</li>
-                            <li>Population of {countyData.jail_population} inmates</li>
-                            <li> Incarceration Rate {countyData.incarceration} inmates</li>
+                            <li>Inmate Population: {countyData.jail_population}</li>
+                            <li> Incarceration Rate {countyData.incarceration} </li>
                             <li style={{fontSize: "12px"}}> In comparison to the total resident population in {countyData.county_name} of {countyData.resident_population}, the rate is determined per 100,000 residents. </li>
                         </ul>
                     </div>
                     <div style={{backgroundColor: "#fff", color: "#000", textAlign: "left"}}>
-                        <h1>In comparison with the rest of {countyData.state_name}</h1>
+                        <h4>In comparison with the rest of {countyData.state_name}</h4>
                         <ul> 
                            
                             { stateData.map((state, index) => 
                             <>
-                                <li key={state.flip_code} style={{fontSize: "16px"}}> {state.county_name} </li>
-                                <li key={state.id}> Last Updated at: {state.last_update} </li>
-                                <li key={state.jail_population.toString()}>Population of {state.jail_population} inmates</li>
-                                <li key={state.incarceration.toString()}> Incarceration Rate {state.incarceration} inmates</li>
-                                <li key={index} style={{fontSize: "12px"}}> In comparison to the total resident population in {state.county_name} of {state.resident_population}, the rate is determined per 100,000 residents. </li>
+                                <li key={state.flip_code} className={userCoords.loading ? 'titleHeading fontAverage1' : 'titleHeading fontMinusFive'}>{state.county_name} </li>
+                                <li key={state.id} style={{fontSize: "12px"}}> Last Updated at: <span style={{fontSize: "20px"}}>{state.last_update}</span> </li>
+                                <li key={state.jail_population.toString()} style={{fontSize: "12px"}}> Population of <span style={{fontSize: "20px"}}>{state.jail_population}</span>inmates</li>
+                                <li key={state.incarceration.toString()} style={{fontSize: "12px"}}> Incarceration Rate <span style={{fontSize: "26px"}}>{state.incarceration}</span></li>
+                                <li key={index} style={{fontSize: "12px"}} style={{fontSize: "12px"}}>  In comparison to the total resident population in {state.county_name} of <span style={{fontSize: "20px"}}>{state.resident_population}</span>, the rate is determined <span style={{fontSize: "20px"}}> per 100,000 residents. </span> </li>
                                 </>
                             )}
                             
@@ -220,9 +222,9 @@ export default function Title({userCoords}) {
                 <div style={{backgroundColor: "#fff"}} 
                 onClick={() => setShouldChange(true)}
                         onMouseLeave={() => setShouldChange(false)}>
-                    <h1 className={shouldChange ? 'new' : 'code' }> 
+                    <h4 className={shouldChange ? 'new' : 'code' }> 
                     ABCDEFGHIJKLM
-                    </h1>
+                    </h4>
                 </div>
             </>
             )}

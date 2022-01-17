@@ -21,18 +21,36 @@ body {
   font-style: normal;
   background: #fff;
 }
-.font {
-  transition: all 250ms linear;
+
+
+.infoContainer {
+  max-width: 75%;
 }
+
+h1 {
+  font-family: 'Outright';
+  font-variation-settings: 'wght' 500;
+  line-height: 14rem;
+  margin: 18px 0;
+  text-align: left;
+  font-size: 16rem;
+}
+
+
 .fontAverage1 {
   font-family: 'Outright';
-  /* font-weight: 00; */
-  
-  
-	font-weight: 900;
-  
-  color: #000;
+  font-variation-settings: 'wght' 500;
+  animation: bold-to-light 2000ms linear 0.3s forwards;
 }
+
+  @keyframes bold-to-light {
+    60% {
+      font-variation-settings: 'wght' 400;
+    }
+    100% {
+      font-variation-settings: 'wght' 00;
+    }
+  } 
 
 .fontMinusOne {
   font-family: 'Outright';
@@ -109,17 +127,11 @@ body {
   max-width: 100%;
 }
 
-.infoContainer {
-  max-width: 75%;
-}
-.titleHeading {
-  font-size: 12rem;
-  text-align: left;
-}
 
 .introBlock {
-  font-size: 14px;
-  line-height: 17px;
+  width: 100%;
+  font-size: 22px;
+  line-height: 37px;
   margin-top: 12px;
   
 }

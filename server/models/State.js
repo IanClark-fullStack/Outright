@@ -7,25 +7,42 @@ const stateSchema = new Schema(
     {
         state_name: {
             type: String,
-            required: true,
+            // required: true,
         }, 
-        state_data: {
-            type: Schema.Types.ObjectId, 
-            ref: 'StateData',
-            required: true,
+        fips_code: {
+            type: String, 
         },
-        counties: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'County'
-            }
-        ],
+
+        resident_population: {
+            type: Number,
+        },
+        incarcerated_population: {
+            type: Number,
+        },
+        geo_id: {
+            type: String, 
+        },
+        incarceration_rate: {
+            type: String, 
+            // required: true, 
+        }
+        // state_data: {
+        //     type: Schema.Types.ObjectId, 
+        //     ref: 'StateData',
+        //     required: true,
+        // },
+        // counties: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: 'County'
+        //     }
+        // ],
     },
-    // {
-    //     toJSON: {
-    //         virtuals: true,
-    //     },
-    // },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+    },
 );
 
 

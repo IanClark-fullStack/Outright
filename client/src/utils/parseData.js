@@ -168,9 +168,26 @@ export const getRelevantData = async (county, state) => {
             })
     
             console.log(sortedCounties)
+
+
+
             // Sort the State Array by Date (Most Recent)
             // const sortedCounties = await findLastUpdated(stateArea);
+            
+            // Build of an array of each counties incarceration rates, 
+                // Sort the rates array in order, [1, 2, 3, 4, 5] 
+                // Find the index of the current State we are in, 
+                // Remove first and last element, 
 
+                
+                // Make a copy of the array, 
+                    // Divide the arrays total length by 7, TEXAS (259) / 9 === 28.44444444
+                    // Loop through the original array and assign each county a value of n+28, 
+                        // 
+                        // Result (round up to nearest Int) 28.4444 === 28
+                        // So index[0] (county) is equal to 28  
+                            // Each proceeding county is each to n+28 
+                            // 
             
             // Pass in the Complete State Data (Arrray), And array of county Names (Array)
             const stateCounties = await findOnlyOne(sortedCounties, countyNameArr);

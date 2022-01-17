@@ -3,33 +3,33 @@ const { Schema } = mongoose;
 
 const State = require('./State');
 
-const locationSchema = new Schema(
-    {
-        state: {
-            type: Schema.Types.ObjectId, 
-            ref: 'State',
-            required: true,
-        }, 
-        county: {
-            type: Schema.Types.ObjectId, 
-            ref: 'County',
-            required: true,
-        }, 
+// const locationSchema = new Schema(
+    // {
+    //     state: {
+    //         type: Schema.Types.ObjectId, 
+    //         ref: 'State',
+    //         // required: true,
+    //     }, 
+    //     county: {
+    //         type: Schema.Types.ObjectId, 
+    //         ref: 'County',
+    //         // required: true,
+    //     }, 
         // jail_data: {
         //     type: Schema.Types.ObjectId, 
         //     ref: 'Jail',
         //     required: true,
         // },
-    },
+    // },
     // {
     //     toJSON: {
     //         virtuals: true,
     //     },
     // },
-);
+// );
 
 
 
-const Location = mongoose.model('Location', locationSchema);
+// const Location = mongoose.model('Location', locationSchema);
 
-module.exports = Location;
+// module.exports = Location;
