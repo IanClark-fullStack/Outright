@@ -1,5 +1,36 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_STATES = gql`
+    {
+        states {
+            _id
+            state_name
+            fips_code
+            resident_population
+            incarcerated_population
+            incarceration_rate
+            geo_id
+        }
+    }
+`;
+
+
+export const QUERY_STATE = gql`
+    {
+        state {
+                _id
+                state_name
+                fips_code
+                resident_population
+                incarcerated_population
+                incarceration_rate
+                geo_id
+            }
+    }
+`;
+
+
+
 export const QUERY_USER = gql`
     query user($_id: ID!) {
         user(_id: $_id) {

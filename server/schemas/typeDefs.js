@@ -17,8 +17,13 @@ const typeDefs = gql`
     type State {
         _id: ID! 
         state_name: String
+        fips_code: String
+        resident_population: Int
+        incarcerated_population: Int
+        geo_id: String
+        incarceration_rate: String
         counties: [County]
-        state_data: StateData
+        
     }
 
     type StateData {
@@ -62,6 +67,7 @@ const typeDefs = gql`
         location(state_name: String, county_name: String): Location
         counties(_id: ID, county_name: String): [County]!
         state(state_name: String): State
+        states: [State]
         county(county_name: String) : County 
         countydata(county_name: String, state_name: String, last_update: String) : [County] 
         me: User

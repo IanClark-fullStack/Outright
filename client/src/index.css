@@ -36,6 +36,42 @@ h1 {
   font-size: 16rem;
 }
 
+h2 {
+  font-family: 'Outright';
+  font-weight: 500;
+  line-height: 14rem;
+  margin: 18px 0;
+  text-align: left;
+  font-size: 16rem;
+  
+}
+
+header {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  background: #fff;
+}
+
+.shiftWeight {
+  font-variation-settings: 'wght' 500;
+  animation: bold-to-light 2000ms linear 0.3s forwards;
+}
+
+.shiftWeight > h2 {
+  animation: bold-to-light 2000ms linear 0.3s forwards;
+}
+
+  @keyframes bold-to-light {
+    60% {
+      font-variation-settings: 'wght' 400;
+    }
+    100% {
+      font-variation-settings: 'wght' 200;
+    }
+  } 
+
+
 
 .fontAverage1 {
   font-family: 'Outright';
@@ -48,7 +84,7 @@ h1 {
       font-variation-settings: 'wght' 400;
     }
     100% {
-      font-variation-settings: 'wght' 00;
+      font-variation-settings: 'wght' 200;
     }
   } 
 

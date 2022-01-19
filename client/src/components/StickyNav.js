@@ -1,5 +1,7 @@
 import { useState } from 'react';
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 // import NavLinks from './NavLinks';
 // const navLinks = ['Projects', 'About', 'Contact', 'Resume'];
 // const onHover = 'border-b-2 border-bright mx-1 md:mx-5';
@@ -16,8 +18,21 @@ export default function StickyNav(props) {
 
     
     return (
-        <nav>
-            {props.userCoords.loading === true ? (
+        <>
+            <AppBar sx={{
+                height: 60,
+                color: '#000',
+                background: '#fff',
+                boxShadow: 0,
+                borderBottom: 2,
+                borderBottomColor: '#000',
+                borderBottomWidth: 2, 
+                fontFamily: 'neue-haas-grotesk-display, sans-serif'
+
+            }}>
+            <Toolbar>
+            
+          {props.userCoords.loading === true ? (
                 <div className='loadingStats'> 
                     <p className='locationLoading'>The majority of people held in local jails are unconvicted pretrial
                     detainees
@@ -40,6 +55,11 @@ export default function StickyNav(props) {
                 </div>
                 
             )}
+      
+          </Toolbar>
+        </AppBar>
+    
+            
         
             {/* <a onClick={() => changeView('home')}>
                 <h4 className='justify-start text-3xl ml-2 md:text-6xl'>iC</h4>
@@ -53,7 +73,8 @@ export default function StickyNav(props) {
             
             </ul> */}
         
-        </nav>
+        </>
+       
         
     );
 }

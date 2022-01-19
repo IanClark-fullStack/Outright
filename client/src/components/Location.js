@@ -5,6 +5,8 @@ import JailData from '../components/JailData';
 // import { searchData } from '../utils/API';
 // import { readRemoteFile } from 'react-papaparse'
 import { geoLocate } from '../utils/GEO';
+import { useQuery } from '@apollo/client';
+import { QUERY_STATES } from '../utils/queries';
 import { getData } from '../utils/API';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
@@ -14,6 +16,7 @@ import { useMutation } from '@apollo/client';
 
 
 import { browserLocation } from '../utils/GEO';
+import FontDisplay from './FontDisplay';
 
 export default function Location() {
     const [userCoords, setUserCoords] = useState({
@@ -23,7 +26,7 @@ export default function Location() {
         countyLocation: undefined,
         error: undefined,
     });
-
+    const [userStateObj, setUserStateObj] = useState({}); 
 
     
     const useLocation = detector => {
@@ -40,9 +43,20 @@ export default function Location() {
     
         return userCoords;
     };
+
     const findLocation = useLocation(browserLocation('AIzaSyC8VG5_qdxhjBO5_-5yw2gVUGOGDguefME'));
 
-    console.log(findLocation);
+    // const compareStates = (coords, sortedStates) => {
+        
+    //     if (coords.stateLocation )
+    // }
+    const { loading, data } = useQuery(QUERY_STATES);
+    const states = data?.states || [];
+
+    // compareStates(states)
+    console.log(states)
+
+    // console.log(findLocation);
     
 
 
@@ -54,13 +68,20 @@ export default function Location() {
     return (
         <>
         
-            {!userCoords ? (
-                <div>Loading...</div>
-            ) : (
-                // If we are not loading, render the profiles list
-                // Passing back the profiles and title prop to the Component
-                <Title userCoords={userCoords} />
-            )}
+            {!userCoords ? ( <div>Loading...</div> ) 
+
+            : ( <div>
+                    <Title userCoords={userCoords} />
+
+                    {loading ? ( <div> Loading </div> ) 
+                    
+                    : ( <>
+                            <FontDisplay userCoords={userCoords} states={states} />
+                        </>
+                    )}
+            
+                
+                </div> )}
         </>
 
     )

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../index.css';
 import { readRemoteFile } from 'react-papaparse';
 import StickyNav from '../components/StickyNav';
+import FontDisplay from '../components/FontDisplay';
 import outrightHeader from '../assets/images/outright-header.png';
 import { useMutation } from '@apollo/client';
 import { ADD_COUNTY_DATA } from '../utils/mutations';
@@ -156,7 +157,7 @@ export default function Title({userCoords}) {
         <img src={outrightHeader} className='headerImg' alt="logo" /> 
         <div className='infoContainer'>
             <h1 
-                className={userCoords.loading ? 'titleHeading baseFont' : 'titleHeading fontAverage1' }  
+                className={userCoords.loading ? 'titleHeading' : 'titleHeading fontAverage1' }  
                 // style={{fontWeight: "900"}}
                 href="https://reactjs.org"
                 target="_blank"
@@ -201,6 +202,7 @@ export default function Title({userCoords}) {
                         </ul>
                     </div>
                     <div style={{backgroundColor: "#fff", color: "#000", textAlign: "left"}}>
+                       <FontDisplay userCoords={userCoords} stateData={stateData} />
                         <h4>In comparison with the rest of {countyData.state_name}</h4>
                         <ul> 
                            
