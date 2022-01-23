@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { geolocated } from "react-geolocated";
 import Title from '../components/Title';
 import JailData from '../components/JailData';
+import CountyDisplay from './CountyDisplay'
+import outrightHeader from '../assets/images/outright-header.png';
+import StickyNav from '../components/StickyNav';
 // import { searchData } from '../utils/API';
 // import { readRemoteFile } from 'react-papaparse'
 import { geoLocate } from '../utils/GEO';
 import { useQuery } from '@apollo/client';
 import { QUERY_STATES } from '../utils/queries';
+import Grid from '@mui/material/Grid'
+import Local from '../utils/Local';
 import { getData } from '../utils/API';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
@@ -26,9 +31,11 @@ export default function Location() {
         countyLocation: undefined,
         error: undefined,
     });
-    const [userStateObj, setUserStateObj] = useState({}); 
 
-    
+    const { loading, data } = useQuery(QUERY_STATES);
+    const userStates = data?.states || [];
+
+   
     const useLocation = detector => {
         
     
@@ -43,18 +50,33 @@ export default function Location() {
     
         return userCoords;
     };
-
+    
+    
+    
+    
     const findLocation = useLocation(browserLocation('AIzaSyC8VG5_qdxhjBO5_-5yw2gVUGOGDguefME'));
 
+    const handleAddState = async () => {
+        try {
+            if (!userCoords.loading) {
+                Local.writeInLocation(findLocation.stateLocation);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+        
+    }
+    handleAddState(findLocation)
+
+    console.log(findLocation)
     // const compareStates = (coords, sortedStates) => {
         
     //     if (coords.stateLocation )
     // }
-    const { loading, data } = useQuery(QUERY_STATES);
-    const states = data?.states || [];
+    
 
     // compareStates(states)
-    console.log(states)
+   
 
     // console.log(findLocation);
     
@@ -64,21 +86,20 @@ export default function Location() {
     //     handleAddUser();
     // };
     
-
+    // console.log(userState);
     return (
         <>
         
             {!userCoords ? ( <div>Loading...</div> ) 
 
-            : ( <div>
-                    <Title userCoords={userCoords} />
-
-                    {loading ? ( <div> Loading </div> ) 
-                    
-                    : ( <>
-                            <FontDisplay userCoords={userCoords} states={states} />
-                        </>
-                    )}
+            : ( <div id="fontAppear">
+                    {/* <Title userCoords={userCoords} />  */}
+                    <CountyDisplay userCoords={userCoords} />
+                    <Grid container spacing={2}>
+                        <Grid item xs={8}>
+                            <FontDisplay userCoords={userCoords} userStates={userStates} />                   
+                        </Grid>
+                    </Grid> 
             
                 
                 </div> )}

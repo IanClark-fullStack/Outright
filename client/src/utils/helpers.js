@@ -1,26 +1,34 @@
-export const determineFontWeight = async (userStateObject, arrayOfStates) => {
-    let output = 200; 
-    let i = 0; 
-    let foundUserData = undefined;    
-    const userState = userStateObject; 
-    if (arrayOfStates.length) {
-        
-    }
-    while (i < arrayOfStates.length && foundUserData === undefined) {
-        let currState = arrayOfStates[i]; 
-        // let currentRank = arrayOfStates[i].rank; 
-       
-        // console.log(output)
-        if (currState.state_name === userState) {
-            foundUserData = currState; 
-        } else {
-            output += 14; 
-        }
-        
-        i++
-    }
-    console.log(output)
-    return output
-    
 
+export const determineFontWeight = async (userState, arrayOfStates) => {
+ 
+    try {
+        let output = 0; 
+        let i = 0;
+        let foundUserData = undefined;    
+        if (!userState.loading && arrayOfStates) {
+            while (i < arrayOfStates.length && foundUserData === undefined) {
+                let currState = arrayOfStates[i];
+                if (userState.stateLocation === currState.state_name) {
+                    // console.log('found user state')
+                    foundUserData = currState
+                    
+                    
+                } 
+                
+                i++
+            }
+
+        }
+        console.log(foundUserData)
+        return Number(foundUserData.incarceration_rate);
+        
+        
+
+        // }
+        
+        
+        // console.log(output)
+    } catch (err) {
+        console.log(err)
+    }
 }

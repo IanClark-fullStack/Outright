@@ -11,6 +11,7 @@
         "collect-seeds": "cd server && npm run collect-seeds",
         "build": "cd client && npm run build",
         "date": "cd server && npm run date-format"
+        
     },
     "keywords": [],
     "author": "",

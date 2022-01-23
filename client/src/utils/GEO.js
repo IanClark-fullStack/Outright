@@ -58,7 +58,6 @@ const findUserData = res => {
                 return el.long_name;
             }
         })
-        console.log(newResult);
         return newResult;
         
     } catch (e) {

@@ -148,7 +148,7 @@ const getData = async () => {
         let currState = totalData[j];
         rates.forEach((rank) => {
             if (currState.state_name === rank.state) {
-                currState.incarceration_rate = rank.hover;
+              currState.incarceration_rate = (rank.hover);
             } 
             
         })

@@ -1,48 +1,101 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_STATES } from '../utils/queries';
+import { QUERY_STATE } from '../utils/queries';
 import React, { useState, useEffect } from 'react';
 import { AnimateKeyframes }  from 'react-simple-animate';
+import Heading from '../components/Heading';
 import { determineFontWeight } from '../utils/helpers';
+import Local from '../utils/Local';
+import { Typography } from '@mui/material';
+export default function FontDisplay({ userCoords, userStates }) {
+    // Activate and Deactivate child component animations by lifting state from parent component
+        // Pass state to child components 
+    const [newFontWeight, setNewFontWeight] = useState({
+        default: 500,
+        loadingWeight: true,
+    }); 
+    // const [localData, setNewFontWeight] = useState({}); 
 
-export default function FontDisplay(props) {
-    const [newFontWeight, setNewFontWeight] = useState(200); 
+    const { loading, data } = useQuery(QUERY_STATE, {
+        variables: { state_name: userCoords.stateLocation },
+    });
 
+    const handleChange = () => {
+        setNewFontWeight({ loadingWeight: false });
+    }
+    
+    const userState = data?.state || {};
+    console.log(userState); 
+    const weight = Number(userState.incarceration_rate)
+    console.log(weight);
 
-    console.log(newFontWeight)
-
-    useEffect(() => {
-        async function changeFont() {
-            // let response = await getRelevantData(userCoords.countyLocation, userCoords.stateLocation);
-            let getFontWeight = await determineFontWeight(props.userCoords.stateLocation, props.states);
-            console.log(getFontWeight)
-            setNewFontWeight(getFontWeight)
-            // console.log(response)
-            // setCountyData({loading: false,  ...response.county  });
-            // setStateData([...response.stateCounties]);
+    const handleDataChange = async () => {
+        try {
+            if (userState) {
+                Local.writeInData(userState);
+            }
             
-            return newFontWeight
+        } catch (err) {
+            console.log(err);
         }
-        
-        changeFont();
-    }, [props, newFontWeight]);
-    console.log(newFontWeight)
- 
-        
-    const injectAnimation = `
-        font-variation-settings: 'wght' 500;
-        animation: shiftWeight 2000ms linear 0.3s forwards;
+    }
+
+    handleDataChange()
+
+    const animateClass = {}
+    // const styles = {
+    //     shiftWeight : {
+    //         fontVariationSettings: 'wght 500',
+    //         animation: 'bold-to-light 2000ms linear 0.3s forwards',
+    //     },
+    //     // 'shiftWeight > h2': {
+    //     //     animation: 'bold-to-light 2000ms linear 0.3s forwards',
+    //     // },
+    //     '@keyframes bold-to-light': {
+    //         '60%': {
+    //             fontVariationSettings: 'wght 400',
+    //         },
+    //         '100%': {
+    //             fontVariationSettings: `wght ${weight}`,
+    //         }
+    //     } 
+    // };
+  
+   
     
-    @keyframes shiftWeight {
-                60% {
-                font-variation-settings: 'wght' 400;
-                }
-                100% {
-                    font-variation-settings: 'wght' ${newFontWeight};
-                }
-            }`
+   let total = 0; 
+    // useEffect(() => {
+    //     let weight = 0; 
+    //     async function changeFont() {
+    //         // let response = await getRelevantData(userCoords.countyLocation, userCoords.stateLocation);
+    //         // let getFontWeight = await determineFontWeight(userState, userStates);
+    //         // console.log(getFontWeight)
+    //         weight = Number(userState.incarceration_rate)
+    //         setNewFontWeight({default: Number(userState.incarceration_rate)})
+    //         // console.log(response)
+    //         // setCountyData({loading: false,  ...response.county  });
+    //         // setStateData([...response.stateCounties]);
+            
+    //         return weight
+    //     }
         
+    //     changeFont();
+    // }, [userState.incarceration_rate]);
+    // console.log(newFontWeight)
     
-    // console.log(stateData)
+
+   
+        // setNewFontWeight({
+        // loading: false, 
+        // fontWeight: fontRate,
+        // twenty: percentOne,
+        // sixty: percentTwo
+        // })
+    
+    
+    // console.log(newFontWeight)
+
+    
+    
 
     // const handleCountyChange = async () => {
     //     try {
@@ -67,19 +120,35 @@ export default function FontDisplay(props) {
         
     // }
     return (
-        <div>
-            <AnimateKeyframes
-                play
-                delay={2}
-                duration={3}
-                fillMode="forwards"
-                keyframes={[
-                    { 20: `font-variation-settings: 'wght' ${Math.round(newFontWeight / 0.2)}` },
-                    { 50: `font-variation-settings: 'wght' ${Math.round(newFontWeight / 0.5)}` },
-                    { 100: `font-variation-settings: 'wght' ${newFontWeight}` }
-                ]}>
-                    <h2>False Front</h2>
-            </AnimateKeyframes>
-        </div>
+        <>
+        
+            {!userState ? ( <div>Loading...</div> ) 
+
+            : (  <div>
+        
+                <div>
+                    <Heading userState={userState} />
+                {/* <h2 style={styles.shiftWeight}>Outright</h2> */}
+                    <AnimateKeyframes
+                    play
+                    delay={8}
+                    duration={4}
+                    fillMode="forwards"
+                    keyframes={[
+                        `font-variation-settings: 'wght' 200`,
+                        `font-variation-settings: 'wght' 100` 
+                    ]}>
+                        <>
+                        {/* <h2 style={styles.keyframes}>Outright v1</h2> */}
+                        </>
+                    </AnimateKeyframes>
+                
+                </div>
+    
+           
+                
+            </div> )}
+        </>
+       
     )
 }

@@ -15,17 +15,15 @@ export const QUERY_STATES = gql`
 `;
 
 
-export const QUERY_STATE = gql`
-    {
-        state {
-                _id
-                state_name
-                fips_code
-                resident_population
-                incarcerated_population
-                incarceration_rate
-                geo_id
-            }
+export const QUERY_STATE = gql`   
+    query state($state_name:String) {
+        state(state_name:$state_name) {
+            _id
+            incarceration_rate
+            resident_population
+            state_name
+            incarcerated_population
+        }
     }
 `;
 
