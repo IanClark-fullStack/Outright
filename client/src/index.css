@@ -31,7 +31,7 @@ h1 {
   line-height: 14rem;
   margin: 18px 0;
   text-align: left;
-  font-size: 16rem;
+  /* font-size: 16rem; */
 }
 
 h2 {
@@ -40,12 +40,11 @@ h2 {
   line-height: 14rem;
   margin: 18px 0;
   text-align: left;
-  font-size: 16rem;
+  /* font-size: 16rem; */
   
 }
 header {
   font-family: neue-haas-grotesk-display, sans-serif;
-  font-weight: 600;
   font-style: normal;
   background: #fff;
 }
@@ -161,10 +160,31 @@ header {
 }
 
 .introBlock {
-  font-size: 24px;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-size: 26px;
   font-weight: 500;
-  line-height: 29px;
+  line-height: 36px;
 }
+
+@media only screen and (max-width: 600px) {
+  .onlyOnDesktop {
+    display: none;
+  }
+  .onlyOnMobile {
+    display: block;
+  }
+}
+
+
+@media only screen and (min-width: 600px) {
+  .onlyOnMobile {
+    display: none;
+  }
+  .onlyOnDesktop {
+    display: block;
+  }
+}
+
 .copyright {
   font-size: 26px;
   line-height: 37px;
@@ -180,4 +200,12 @@ header {
   display: inline-block; 
   text-align: right;
   margin-left: 4%;
+}
+
+.arrowRight {
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
 }

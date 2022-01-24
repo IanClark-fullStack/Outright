@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { geolocated } from "react-geolocated";
 import Title from '../components/Title';
 import JailData from '../components/JailData';
-import CountyDisplay from './CountyDisplay'
+import CountyDisplay from './CountyDisplay';
+import SlideForward from './SlideForward';
 import outrightHeader from '../assets/images/outright-header.png';
 import StickyNav from '../components/StickyNav';
+import ForwardButton from '../components/ForwardButton';
 // import { searchData } from '../utils/API';
 // import { readRemoteFile } from 'react-papaparse'
 import { geoLocate } from '../utils/GEO';
 import { useQuery } from '@apollo/client';
 import { QUERY_STATES } from '../utils/queries';
-import Grid from '@mui/material/Grid'
 import Local from '../utils/Local';
+import { Grid } from '@mui/material';
 import { getData } from '../utils/API';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
@@ -35,7 +37,6 @@ export default function Location() {
     const { loading, data } = useQuery(QUERY_STATES);
     const userStates = data?.states || [];
 
-   
     const useLocation = detector => {
         
     
@@ -54,7 +55,7 @@ export default function Location() {
     
     
     
-    const findLocation = useLocation(browserLocation('AIzaSyC8VG5_qdxhjBO5_-5yw2gVUGOGDguefME'));
+    const findLocation = useLocation(browserLocation(`${process.env.REACT_APP_GEO}`));
 
     const handleAddState = async () => {
         try {
@@ -68,41 +69,43 @@ export default function Location() {
     }
     handleAddState(findLocation)
 
-    console.log(findLocation)
-    // const compareStates = (coords, sortedStates) => {
-        
-    //     if (coords.stateLocation )
-    // }
-    
-
-    // compareStates(states)
-   
-
-    // console.log(findLocation);
-    
-
-
-    // if (userCoords) { 
-    //     handleAddUser();
-    // };
-    
-    // console.log(userState);
     return (
         <>
-        
-            {!userCoords ? ( <div>Loading...</div> ) 
+        {/* <CountyDisplay userCoords={userCoords} />  */}
+        {!userCoords ? ( <div>Loading...</div> ) 
 
-            : ( <div id="fontAppear">
+            : ( <>
+                
+                <StickyNav userCoords={userCoords} userStates={userStates} /> 
+                <div id="fontAppear">
                     {/* <Title userCoords={userCoords} />  */}
-                    <CountyDisplay userCoords={userCoords} />
-                    <Grid container spacing={2}>
-                        <Grid item xs={8}>
-                            <FontDisplay userCoords={userCoords} userStates={userStates} />                   
+                    
+                    <FontDisplay userCoords={userCoords} userStates={userStates} />    
+                    <div className='onlyOnMobile'>
+                        <ForwardButton /> 
+                    </div>
+                    <Grid item xs={10} sm={10}>       
+                        <p className='introBlock'>OUTRIGHT is a parametric display typeface that's tied to state incarceration numbers. It's appearance is subject to your state's rates. This project aims to create conversation around the act of Prison Gerrymandering. We want to describe what it is and provide resources for people that want to take action.</p>
+                    </Grid>
+
+                        <Grid item xs={12} sm={2}
+                        container
+                        direction="row"
+                        justifyContent="flex-end"
+                        alignItems="flex-end">
+                            <p className="introBlock">*All data derived from LoremSource.org and is updated daily. If there are any display issues please leave us a message HERE<br />
+                                <span className="copyright">VERSION 1.0</span>
+                                <span className="copyright2">Ⓒ2022</span>
+                                
+                            </p>
+                            
                         </Grid>
-                    </Grid> 
+                    
             
                 
-                </div> )}
+                </div>
+                </> 
+                )}
         </>
 
     )

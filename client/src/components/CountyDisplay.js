@@ -83,7 +83,7 @@ export default function CountyDisplay({userCoords}) {
 
 
     return (
-        <div>
+        <>
         <StickyNav userCoords={userCoords} countyData={countyData} /> 
         {userCoords.loading === true ? (
             <div style={{backgroundColor: "#fff"}} 
@@ -96,7 +96,7 @@ export default function CountyDisplay({userCoords}) {
         ) : (
 
             <>
-            {countyData.loading === true ? (
+            {/* {countyData.loading === true ? (
                 
                 <div style={{backgroundColor: "#fff", color: "#000"}}>
                     <h4> 
@@ -104,8 +104,8 @@ export default function CountyDisplay({userCoords}) {
                     </h4>
                 </div>
             ) : (
-            <>
-                <div style={{backgroundColor: "#fff", color: "#000", textAlign: "left"}}>
+            <> */}
+                {/* <div style={{backgroundColor: "#fff", color: "#000", textAlign: "left"}}>
                     <h4 onClick={handleCountyChange}>Displaying :  {countyData.county_name}</h4>
                     <h4>{countyData.title}</h4>
                     <ul> 
@@ -115,13 +115,13 @@ export default function CountyDisplay({userCoords}) {
                         <li style={{fontSize: "12px"}}> In comparison to the total resident population in {countyData.county_name} of {countyData.resident_population}, the rate is determined per 100,000 residents. </li>
                     </ul>
                 </div>
-                <div style={{backgroundColor: "#fff", color: "#000", textAlign: "left"}}>
+                <div style={{backgroundColor: "#fff", color: "#000", textAlign: "left"}}> */}
                 {/* <Grid container spacing={2}>
                         <Grid item xs={8}>
                         <FontDisplay userCoords={userCoords} stateData={stateData} />
                     </Grid>
                 </Grid> */}
-                    <h4>In comparison with the rest of {countyData.state_name}</h4>
+                    {/* <h4>In comparison with the rest of {countyData.state_name}</h4>
                     <ul> 
             
                         { stateData.map((state, index) => 
@@ -134,8 +134,8 @@ export default function CountyDisplay({userCoords}) {
                             </>
                         )}
                         
-                    </ul>
-                </div>
+                    </ul> */}
+                {/* </div>
             </>
             )}
 
@@ -145,13 +145,15 @@ export default function CountyDisplay({userCoords}) {
                 <h4 className={shouldChange ? 'new' : 'code' }> 
                 ABCDEFGHIJKLM
                 </h4>
-            </div>
-        </>
-        )}
-    </div>
-    )
-
-
-} 
+            </div> */}
+        {/* </>
+        )} */}
+   
     
+   </>
 
+
+    )}
+    </>
+    )   
+}

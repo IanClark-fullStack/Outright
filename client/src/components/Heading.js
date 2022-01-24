@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_STATE } from '../utils/queries';
 import { css, keyframes } from "@emotion/react";
 import { useTheme } from "@mui/material/styles";
+import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import ReactDOM from "react-dom";
 import Local from '../utils/Local';
@@ -106,10 +107,10 @@ export default function Heading({ userState }) {
     console.log(userData)
     const myEffect = keyframes`
     0% {
-    font-variation-settings: 'wght' 500;
+    font-variation-settings: 'wght' 700;
     }
     20%% {
-    font-variation-settings: 'wght' 500;
+    font-variation-settings: 'wght' ${weight / 2};
     }
     100% {
     font-variation-settings: 'wght' ${weight};
@@ -135,25 +136,22 @@ export default function Heading({ userState }) {
     return (
         <>
         
-            {!userState ? ( <div>Loading...</div> ) 
+            {!userState ? ( <h2>outright</h2> ) 
 
-            : (  <>
-      
-                <div css={animatedItem}>
-                  <h2 css={animatedItem}>Hello CodeSandbox</h2>
-                  <p>Start editing to see some magic happen!</p>
-                  {/* <Button onClick={() => setExit(true)}>Click to exit</Button> */}
-                </div>
+            : (  
+                <>
+                    <div css={animatedItem}>
+                        <Typography variant="h1" css={animatedItem}>
+                            outright*
+                        </Typography>
+                                {/* <Button onClick={() => setExit(true)}>Click to exit</Button> */}
+                    </div>
                 {/* {exit && <Button onClick={() => setExit(false)}>Click to enter</Button>} */}
-              </>
-               )}
+                </>
+            )}
         </>
-     
     );
-  }
-
-  const rootElement = document.getElementById("root");
-ReactDOM.render(<Heading />, rootElement);
+}
  
 
 // export default function Heading({ newFontWeight, weight, handleChange }) {
