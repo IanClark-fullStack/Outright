@@ -71,7 +71,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 export default function OutlinedButtons() {
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <ColorButton variant="contained">Download</ColorButton>
+            <ColorButton variant="contained" sx={{marginLeft: 0, marginRight: 0,}}>Download</ColorButton>
             <ColorButton variant="contained" disabled>Version 1.0</ColorButton>
             <ColorButton variant="contained" disabled>Ⓒ2022</ColorButton>
         </Stack>

@@ -49,11 +49,13 @@ header {
   font-style: normal;
   font-weight: 400;
   background: #fff;
-  background-size: cover;
-  max-width: 100%;
-  width:100%;
+  
   
 }
+section {
+  margin: 1rem 2rem;
+}
+
 
 .fullWidth {
   width: 100vw;
@@ -79,8 +81,7 @@ header {
   margin-right: -50vw;
 }
 .fullWidthVar{
-  
-  max-height: 26vh;
+  max-height: 36%;
 }
 
 .shiftWeight2 {
@@ -150,8 +151,11 @@ header {
 .headerImg {
   background-size: cover;
   max-width: 100%;
+  margin-top: 13%;
 }
-
+.smallSideNav {
+  margin-top: 10%;
+}
 .introBlock {
   font-family: neue-haas-grotesk-display, sans-serif;
   font-size: 26px;
@@ -169,31 +173,67 @@ header {
   line-height: 26px;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: flex-end;
-  justify-content: flex-start;
 }
 
 @media only screen and (max-width: 600px) {
   .onlyOnDesktop {
     display: none;
+    margin: 0%;
+    padding: 0;
+    width: 0;
+    height: 0;
   }
   .onlyOnMobile {
     display: block;
   }
   .dataSourcesBlock {
-    font-size: 14px;
+    font-size: 11px;
+    line-height: 14px;
+    
   }
+  section {
+    margin: 1rem 1rem;
+  }
+  .subTitle {
+    margin-left: -5%;
+  }
+  .smallSideNav {
+    margin-top: 2%;
+  }
+  .shiftIn {
+    margin-left: -4%;
+  }
+
+  .projectDefinition {
+    font-size: 11px;
+    line-height: 125%;
+
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+  }
+
+  .fullVar{
+    width: 85vw;
+    position: relative;
+    left: 52%;
+    right: 40%;
+    margin-left: -36vw;
+    margin-right: -50vw;
+  }
+  .fullWidthVar{
+    margin-top: 10%;
+  }
+  .mobileDesc {
+    margin-top: 15%;
+  }
+  
 
   .buttonStackDownload {
     width: 86px; 
     height: 21px; 
     font-size: 12px;
   }
-  .shiftDown {
-    margin-top: 30vh;
-  }
+ 
   .introBlock {
     font-size: 14px;
     font-style: normal;
@@ -208,6 +248,7 @@ header {
   
   .onlyOnDesktop {
     display: none;
+    margin: 0;
   }
   .onlyOnMobile {
     display: block;
@@ -216,6 +257,10 @@ header {
     width: 77.68%;
     height: 76.68%;
   }
+  .headerImg {
+    margin-top: 13%;
+  }
+  
   
 }
 
@@ -224,11 +269,24 @@ header {
 @media only screen and (min-width: 600px) {
   .onlyOnMobile {
     display: none;
+    margin: 0;
   }
   .onlyOnDesktop {
     display: block;
   }
+  .deskSpace {
+    margin-top: 20vh;
+  }
+  .deskTitle {
+    margin-left: 13%;
+  } 
+.projectDefinition {
+  font-size: 21px;
+  line-height: 145%;
 
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
   
 }
 
@@ -296,15 +354,9 @@ header {
 .subTitle {
   font-weight: 800;
   font-size: 2.2rem;
+  margin-top: 15%;
 }
 
-.projectDefinition {
-  font-size: 21px;
-  line-height: 145%;
-
-  letter-spacing: 0.015em;
-  text-transform: uppercase;
-}
 
 /* .scaleDown {
   width: 47.68vh;

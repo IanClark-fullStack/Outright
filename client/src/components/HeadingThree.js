@@ -22,8 +22,6 @@ export default function HeadingThree({ pageNum }) {
             console.log(err);
         }
     }
-   
-    const titleValues = ['outright*', 'false front', 'amended', 'figures', 'liable', 'leaders']; 
 
     const userData = getData(); 
     console.log(weight)
@@ -40,41 +38,24 @@ export default function HeadingThree({ pageNum }) {
     font-variation-settings: 'wght' ${weight};
     }
     `;
-    const myEffectExit = keyframes`
-    0% {
-        font-variation-settings: 'wght' ${weight};
-    }
-    100% {
-        font-variation-settings: 'wght' 500;
-    }
-    `;
+
     const theme = useTheme();
     const animatedItem = css`
         animation: ${myEffect} 3000ms linear 0.3s forwards;
     `;
-    // const animatedItemExiting = css`
-    //   animation: ${myEffectExit} 3000ms ${theme.transitions.easing.easeInOut};
-    //   font-variation-setting: 'wght' 500;
-    // `;
 
-    const textContent = () => {
-        if (pageNum === 1) {
-            return <> {titleValues[0]} </>
-        } else if (pageNum === 2) {
-            return <> {titleValues[1]} </>
-        }
-    }
 
     return (       
                 <>
                     <div css={animatedItem}>
                             
-                                <Typography variant="h1" css={animatedItem}>
+                                <Typography variant="h3" css={animatedItem} className='shiftIn'>
                                     Amended
                                 </Typography>
 
+                                
                     </div>
-                {/* {exit && <Button onClick={() => setExit(false)}>Click to enter</Button>} */}
+        
                 </>
     );
 }

@@ -9,6 +9,8 @@ export default function reducer(state, action) {
     // Depending on the action we create a new version of state after the desired action is preformed
     switch (action.type) {
         case ADD_WEIGHT: {
+
+            
             // Grab the last student's id from the array of students and add one to it.
             const newWeightValue = state.pageTitles[state.pageTitles.length - 1].id;
             console.log(newWeightValue);

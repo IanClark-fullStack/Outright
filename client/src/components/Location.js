@@ -82,23 +82,19 @@ export default function Location({ pageNum }) {
 
                         {/* <Title userCoords={userCoords} />  */}
                         
-                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 7, sm: 7, md: 5 }}> 
-                                <Grid item xs={7} sm={7} md={4}>  
+                        <Grid container spacing={{ xs: 2, md: 3 }}> 
+                                <Grid item xs={10} sm={10} md={9}>  
                                     <FontDisplay userCoords={userCoords} userStates={userStates} pageNum={pageNum} /> 
                                     
                                 </Grid> 
 
-                                <Grid item xs={7} sm={7} md={1}>
-                                    <div className='onlyOnMobile'>
-                                        <ForwardButton /> 
-                                    </div>
-                                </Grid>
+                               
                         </Grid>
                     </Box>
                     <Box sx={{ flexGrow: 1 }}>
                                 
-                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 7, sm: 7, md: 5 }}> 
-                            <Grid item xs={7} sm={7} md={4}>  
+                        <Grid container spacing={{ xs: 2, md: 2 }}> 
+                            <Grid item xs={10} sm={10} md={9}>  
                                 <p className='introBlock'>OUTRIGHT is a parametric display typeface that's tied to state incarceration numbers. It's appearance is subject to your state's rates. This project aims to create conversation around the act of Prison Gerrymandering. We want to describe what it is and provide resources for people that want to take action.</p>
                                 <div className='onlyOnDesktop'>
                                     <ButtonStack /> 
@@ -106,30 +102,36 @@ export default function Location({ pageNum }) {
                                     
                             </Grid>
                             
-
-                            <Grid item xs={7} sm={7} md={1}>
-                                <p className="dataSourcesBlock">*All of our data is derived from prisonpolicy.org and is updated daily. Just like our  democracy, outright is a work-in-progress. If there are any display issues please reach out!<br />
-                                </p>
+                            {/* <div className='onlyOnDesktop'> */}
+                                <Grid item xs={8} sm={8} md={3} className='onlyOnDesktop'>
+                                    <p className="dataSourcesBlock">*All of our data is derived from prisonpolicy.org and is updated daily. Just like our  democracy, outright is a work-in-progress. If there are any display issues please reach out!<br />
+                                    </p>
+                                </Grid>
+                            {/* </div> */}
                             </Grid>
-                        
-                        </Grid>
-                    </Box>
-                    <div className='onlyOnMobile'>
-                    <Box sx={{ flexGrow: 1 }}>
+                        </Box>
+
+                            <div className='onlyOnMobile'>
+                    
                                 
-                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 8, sm: 8, md: 0 }}>
+                                <Grid container direction='row' spacing={{ xs: 1, sm: 1, md: 3 }} columns={{ xs: 8, sm: 8, md: 0 }} sx={{marginTop: '2%'}}>
                                     
-                                    <Grid item xs={3} sm={3} md={1}>
+                                    <Grid item xs={3} sm={3} md={1} sx={{marginLeft: '2%'}}>
                                         <ButtonStack />
                                     </Grid>
-                                    <Grid item xs={5} sm={5} md={1}>
+                                    <Grid item xs={4} sm={4} md={0}>
                                         <p className="dataSourcesBlock">*All of our data is derived from prisonpolicy.org and is updated daily. Just like our  democracy, outright is a work-in-progress. If there are any display issues please reach out!<br />
                                         </p>
                                     </Grid>
         
                                 </Grid>
-                            </Box>
-                    </div>
+                            
+                            </div>
+                           
+                        
+                        
+                    
+                    
                     
                     </> 
                 )}

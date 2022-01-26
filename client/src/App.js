@@ -67,7 +67,7 @@ let theme = createTheme({
             variantMapping: {
               h1: 'h2',
               h2: 'h2',
-              h3: 'h2',
+              h3: 'h3',
               h4: 'h2',
               h5: 'h2',
               h6: 'h2',
@@ -87,6 +87,7 @@ theme.typography.body1 = {
 };
 theme.typography.h1 = {
   fontSize: '8rem',
+  lineHeight: '6rem',
   '@media (min-width:600px)': {
     fontSize: '12rem',
   },
@@ -102,9 +103,13 @@ theme.typography.h1 = {
 theme.typography.h3 = {
   fontSize: '11rem',
   lineHeight: '11.2rem',
+  '@media (min-width:400px)': {
+    fontSize: '11rem',
+    lineHeight: '11.2rem'
+  },
   '@media (min-width:600px)': {
     fontSize: '9rem',
-    lineHeight: '9.6rem'
+    lineHeight: '9rem'
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '10.5rem',
