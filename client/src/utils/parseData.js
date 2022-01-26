@@ -135,7 +135,7 @@ export const getRelevantData = async (county, state) => {
                     
                     // Create County Specific Data in Object Structure
                     stateData = await {flip_code: Number(flip_code), last_update, jail_population: Number(jail_population), county_name, state_name, place_type, title, resident_population: Number(resident_population), incarceration: Number(incarceration)};
-                    
+
                     // Push all County Objects to an Array 
                     if (!stateArea.includes(stateData.county_name)) {
                         stateArea.push(stateData);
@@ -179,7 +179,7 @@ export const getRelevantData = async (county, state) => {
                 // Find the index of the current State we are in, 
                 // Remove first and last element, 
 
-
+                
                 // Make a copy of the array, 
                     // Divide the arrays total length by 7, TEXAS (259) / 9 === 28.44444444
                     // Loop through the original array and assign each county a value of n+28, 

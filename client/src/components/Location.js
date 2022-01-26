@@ -2,19 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { geolocated } from "react-geolocated";
 import Title from '../components/Title';
 import JailData from '../components/JailData';
-import CountyDisplay from './CountyDisplay';
-import SlideForward from './SlideForward';
-import outrightHeader from '../assets/images/prison-yard-outright.png';
-import StickyNav from '../components/StickyNav';
-import ForwardButton from '../components/ForwardButton';
-import ButtonStack from '../components/ButtonStack';
 // import { searchData } from '../utils/API';
 // import { readRemoteFile } from 'react-papaparse'
 import { geoLocate } from '../utils/GEO';
-import { useQuery } from '@apollo/client';
-import { QUERY_STATES } from '../utils/queries';
-import Local from '../utils/Local';
-import { Grid, Slide, Box, Button } from '@mui/material';
 import { getData } from '../utils/API';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
@@ -24,9 +14,8 @@ import { useMutation } from '@apollo/client';
 
 
 import { browserLocation } from '../utils/GEO';
-import FontDisplay from './FontDisplay';
 
-export default function Location({ pageNum }) {
+export default function Location() {
     const [userCoords, setUserCoords] = useState({
         loading: true,
         location: undefined,
@@ -35,9 +24,8 @@ export default function Location({ pageNum }) {
         error: undefined,
     });
 
-    const { loading, data } = useQuery(QUERY_STATES);
-    const userStates = data?.states || [];
 
+    
     const useLocation = detector => {
         
     
@@ -52,89 +40,27 @@ export default function Location({ pageNum }) {
     
         return userCoords;
     };
-    
-    
-    
-    
-    const findLocation = useLocation(browserLocation(`${process.env.REACT_APP_GEO}`));
+    const findLocation = useLocation(browserLocation('AIzaSyC8VG5_qdxhjBO5_-5yw2gVUGOGDguefME'));
 
-    const handleAddState = async () => {
-        try {
-            if (!userCoords.loading) {
-                Local.writeInLocation(findLocation.stateLocation);
-            }
-        } catch (err) {
-            console.log(err);
-        }
-        
-    }
-    handleAddState(findLocation)
+    console.log(findLocation);
+    
+
+
+    // if (userCoords) { 
+    //     handleAddUser();
+    // };
+    
 
     return (
         <>
-        {/* <CountyDisplay userCoords={userCoords} />  */}
-        {!userCoords ? ( <div>Loading...</div> ) 
-
-            : ( <>
-                    <StickyNav userCoords={userCoords} userStates={userStates} /> 
-                    {/* <img src={outrightHeader} className='headerImg' alt="logo" /> */}
-                    <Box sx={{ flexGrow: 1 }}>
-
-                        {/* <Title userCoords={userCoords} />  */}
-                        
-                        <Grid container spacing={{ xs: 2, md: 3 }}> 
-                                <Grid item xs={10} sm={10} md={9}>  
-                                    <FontDisplay userCoords={userCoords} userStates={userStates} pageNum={pageNum} /> 
-                                    
-                                </Grid> 
-
-                               
-                        </Grid>
-                    </Box>
-                    <Box sx={{ flexGrow: 1 }}>
-                                
-                        <Grid container spacing={{ xs: 2, md: 2 }}> 
-                            <Grid item xs={10} sm={10} md={9}>  
-                                <p className='introBlock'>OUTRIGHT is a parametric display typeface that's tied to state incarceration numbers. It's appearance is subject to your state's rates. This project aims to create conversation around the act of Prison Gerrymandering. We want to describe what it is and provide resources for people that want to take action.</p>
-                                <div className='onlyOnDesktop'>
-                                    <ButtonStack /> 
-                                </div>
-                                    
-                            </Grid>
-                            
-                            {/* <div className='onlyOnDesktop'> */}
-                                <Grid item xs={8} sm={8} md={3} className='onlyOnDesktop'>
-                                    <p className="dataSourcesBlock">*All of our data is derived from prisonpolicy.org and is updated daily. Just like our  democracy, outright is a work-in-progress. If there are any display issues please reach out!<br />
-                                    </p>
-                                </Grid>
-                            {/* </div> */}
-                            </Grid>
-                        </Box>
-
-                            <div className='onlyOnMobile'>
-                    
-                                
-                                <Grid container direction='row' spacing={{ xs: 1, sm: 1, md: 3 }} columns={{ xs: 8, sm: 8, md: 0 }} sx={{marginTop: '2%'}}>
-                                    
-                                    <Grid item xs={3} sm={3} md={1} sx={{marginLeft: '2%'}}>
-                                        <ButtonStack />
-                                    </Grid>
-                                    <Grid item xs={4} sm={4} md={0}>
-                                        <p className="dataSourcesBlock">*All of our data is derived from prisonpolicy.org and is updated daily. Just like our  democracy, outright is a work-in-progress. If there are any display issues please reach out!<br />
-                                        </p>
-                                    </Grid>
         
-                                </Grid>
-                            
-                            </div>
-                           
-                        
-                        
-                    
-                    
-                    
-                    </> 
-                )}
+            {!userCoords ? (
+                <div>Loading...</div>
+            ) : (
+                // If we are not loading, render the profiles list
+                // Passing back the profiles and title prop to the Component
+                <Title userCoords={userCoords} />
+            )}
         </>
 
     )

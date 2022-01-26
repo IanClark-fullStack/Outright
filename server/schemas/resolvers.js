@@ -19,12 +19,6 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        state: async (parent, { state_name }, context) => {
-            return State.findOne({ state_name })
-        },
-        states: async (parent, args) => {
-            return State.find();
-        },
         // Alternatively pass in args to set location data 
         location: async (parent, { state_name, county_name }, context) => {
             const locations = {}; 

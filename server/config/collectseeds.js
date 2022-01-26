@@ -1,16 +1,16 @@
 const { StringStream } = require("scramjet");
 const fetch = require('node-fetch');
-const db = require('./connection');
+const db = require('../config/connection');
 const { State, StateData } = require('../models');
 const { URLSearchParams } = require('url');
 const encodedParams = new URLSearchParams();
-require('dotenv').config()
+
 // let collectedData; 
 // module.exports = {
 
 const { concatenateTypeDefs } = require("graphql-tools");
-const censusUrl = `https://api.census.gov/data/2021/pep/population?get=group(NST_EST2021_POP)&for=state:*&key=${process.env.CENSUS1}`;
-const censusPrisonUrl = `https://api.census.gov/data/2020/dec/pl?get=group(P5),NAME&for=state:*&key=${process.env.CENSUS1}`;
+const censusUrl = `https://api.census.gov/data/2021/pep/population?get=group(NST_EST2021_POP)&for=state:*&key=6c81ff30d529280f747a0f7a8a330f162f30c474`;
+const censusPrisonUrl = `https://api.census.gov/data/2020/dec/pl?get=group(P5),NAME&for=state:*&key=6c81ff30d529280f747a0f7a8a330f162f30c474`;
 let resData;
 let results;
 let dataArray = [];
@@ -122,7 +122,6 @@ const getData = async () => {
     for (let i = 0; i < statePopulations.length; i++) {
        let currState = statePopulations[i]
         statePrisons.forEach((prison) => {
-            
             if (currState.fips_code === prison.fips_code) {
                 // let diff = (prison.incarcerated_population / item.resident_population);
                 // // console.log(diff);
@@ -135,25 +134,18 @@ const getData = async () => {
                     incarcerated_population: prison.incarcerated_population,
                     geo_id: currState.geo_id,
                 }
-                totalData.push(totals);
                 
                 
             }
         })
-        
-
-   
-    }
-    for (let j=0; j<totalData.length; j++) {
-        let currState = totalData[j];
         rates.forEach((rank) => {
-            if (currState.state_name === rank.state) {
-              currState.incarceration_rate = (rank.hover);
+            if (rank.state === currState.state_name) {
+                totals.incarceration_rate = rank.hover;
             } 
-            
         })
+
+    totalData.push(totals);
     }
-    // console.log(totalData)
     // db.once('open', async () => {
     //     try {
     //         console.log('db Opened');
@@ -181,51 +173,36 @@ const getData = async () => {
     //     }
     // })
     
-        console.log(totalData)
+        // console.log(totalData)
         return totalData
     
 }
 
-const dataSorting = async (arrayOfTotals) => {
-    // Set first value as minimum
-    // let minRate = arrayOfTotals[0].incarceration_rate.slice();
-    
-    for (let i = 0; i < arrayOfTotals.length; i++) {
-        let minIndex = i;
-         // For each unsorted value, 
-        for (let j = i + 1; j < arrayOfTotals.length; j++) {
-            if (arrayOfTotals[minIndex].incarceration_rate > arrayOfTotals[j].incarceration_rate) {
-                minIndex = j;
-            }
-        }
-        if (minIndex !== i) {
-            let tmp = arrayOfTotals[i];
-            arrayOfTotals[i] = arrayOfTotals[minIndex];
-            arrayOfTotals[minIndex] = tmp;
-        }
-
-    }
-    arrayOfTotals.map((total, index) => {
-        if (total.state_name !== 'District of Columbia') {
-            return total.rank = index - 1;
-        }
-        
-    })
-    
-    return arrayOfTotals;
-}
 
 
     db.once('open', async () => {
+       
         try {
             const data = await getData();
-            const sortedData = await dataSorting(data);
-            console.log(sortedData);
             console.log('db Opened');
-            // console.log(data)
             await State.deleteMany({});
+            for (let i=0; i < totalData.length; i++) {
+                let state = totalData[i];
+                const states = await State.insertMany([{
+                    state_name: state.state_name, 
+                    fips_code: state.fips_code, 
+                    resident_population: state.resident_population, 
+                    incarcerated_population: state.incarcerated_population,
+                    geo_id: state.geo_id, 
+                    incarceration_rate: state.incarceration_rate,
+                }]);
+            }
+                
+          
             
-            const states = await State.insertMany([...sortedData]);
+            
+
+            
             
             
             console.log('all done!');

@@ -17,14 +17,15 @@
 
 body {
   font-family: neue-haas-grotesk-display, sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
   background: #fff;
-  margin: 0; 
 }
 
 
-
+.infoContainer {
+  max-width: 75%;
+}
 
 h1 {
   font-family: 'Outright';
@@ -32,76 +33,8 @@ h1 {
   line-height: 14rem;
   margin: 18px 0;
   text-align: left;
-  /* font-size: 16rem; */
+  font-size: 16rem;
 }
-
-h2, h3, h4, h5, h6 {
-  font-family: 'Outright';
-  font-weight: 500;
-  line-height: 14rem;
-  margin: 18px 0;
-  text-align: left;
-  /* font-size: 16rem; */
-  
-}
-header {
-  font-family: neue-haas-grotesk-display, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  background: #fff;
-  
-  
-}
-section {
-  margin: 1rem 2rem;
-}
-
-
-.fullWidth {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
-
-.fullWidthTitle {
-  width: 90vw;
-  position: relative;
-  left: 5%;
-}
-
-.fullVar{
-  width: 80vw;
-  position: relative;
-  left: 56%;
-  right: 40%;
-  margin-left: -28vw;
-  margin-right: -50vw;
-}
-.fullWidthVar{
-  max-height: 36%;
-}
-
-.shiftWeight2 {
-  font-variation-settings: 'wght' 500;
-  animation: bold-to-light 2000ms linear 0.3s forwards;
-}
-
-.shiftWeight2 > h2 {
-  animation: bold-to-light 2000ms linear 0.3s forwards;
-}
-
-  @keyframes bold-to-light2 {
-    60% {
-      font-variation-settings: 'wght' 400;
-    }
-    100% {
-      font-variation-settings: 'wght' 200;
-    }
-  } 
-
 
 
 .fontAverage1 {
@@ -110,12 +43,12 @@ section {
   animation: bold-to-light 2000ms linear 0.3s forwards;
 }
 
-  @keyframes bold-to-light3 {
+  @keyframes bold-to-light {
     60% {
       font-variation-settings: 'wght' 400;
     }
     100% {
-      font-variation-settings: 'wght' 200;
+      font-variation-settings: 'wght' 00;
     }
   } 
 
@@ -134,7 +67,48 @@ section {
 	font-variation-settings: 'wght' 700 ;
   color: #000;
 }
-
+.fontMinusThree {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 600 ;
+  color: #000;
+}
+.fontMinusFour {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 500 ;
+  color: #000;
+}
+.fontMinusFive {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 400 ;
+  color: #000;
+}
+.fontMinusSix {
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 300 ;
+  color: #000;
+}
+.fontMinusSeven{
+  font-family: 'Outright';
+  /* font-weight: 00; */
+  /* transition: all 250ms linear; */
+	font-variation-settings: 'wght' 200 ;
+  color: #000;
+}
+.fontMinusEight {
+  font-family: 'Outright';
+  font-weight: 00;
+  transition: all 250ms linear; 
+	font-variation-settings: 'wght' 100 ;
+  color: #000;
+}
 
 .sourceNumber {
   font-size: 0.45rem;
@@ -151,225 +125,13 @@ section {
 .headerImg {
   background-size: cover;
   max-width: 100%;
-  margin-top: 13%;
 }
-.smallSideNav {
-  margin-top: 10%;
-}
+
+
 .introBlock {
-  font-family: neue-haas-grotesk-display, sans-serif;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 36px;
-  letter-spacing: 0.015em;
-  text-transform: uppercase;
-}
-.dataSourcesBlock {
-  font-family: neue-haas-grotesk-display, sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 26px;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-
-@media only screen and (max-width: 600px) {
-  .onlyOnDesktop {
-    display: none;
-    margin: 0%;
-    padding: 0;
-    width: 0;
-    height: 0;
-  }
-  .onlyOnMobile {
-    display: block;
-  }
-  .dataSourcesBlock {
-    font-size: 11px;
-    line-height: 14px;
-    
-  }
-  section {
-    margin: 1rem 1rem;
-  }
-  .subTitle {
-    margin-left: -5%;
-  }
-  .smallSideNav {
-    margin-top: 2%;
-  }
-  .shiftIn {
-    margin-left: -4%;
-  }
-
-  .projectDefinition {
-    font-size: 11px;
-    line-height: 125%;
-
-    letter-spacing: 0.015em;
-    text-transform: uppercase;
-  }
-
-  .descLink {
-    color: #000;
-    text-decoration: none;
-    font-weight: 800;
-  }
-
-  .fullVar{
-    width: 85vw;
-    position: relative;
-    left: 52%;
-    right: 40%;
-    margin-left: -36vw;
-    margin-right: -50vw;
-  }
-  .fullWidthVar{
-    margin-top: 10%;
-  }
-  .mobileDesc {
-    margin-top: 15%;
-  }
-  
-
-  .buttonStackDownload {
-    width: 86px; 
-    height: 21px; 
-    font-size: 12px;
-  }
- 
-  .introBlock {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 19px;
-    letter-spacing: 0.015em;
-    text-transform: uppercase;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  
-  .onlyOnDesktop {
-    display: none;
-    margin: 0;
-  }
-  .onlyOnMobile {
-    display: block;
-  }
-  .scaleDown {
-    width: 77.68%;
-    height: 76.68%;
-  }
-  .headerImg {
-    margin-top: 13%;
-  }
-  
-  
-}
-
-
-
-@media only screen and (min-width: 600px) {
-  .onlyOnMobile {
-    display: none;
-    margin: 0;
-  }
-  .onlyOnDesktop {
-    display: block;
-  }
-  .deskSpace {
-    margin-top: 20vh;
-  }
-  .deskTitle {
-    margin-left: 13%;
-  } 
-.projectDefinition {
-  font-size: 21px;
-  line-height: 145%;
-
-  letter-spacing: 0.015em;
-  text-transform: uppercase;
-}
-  
-}
-
-.copyright {
-  font-size: 26px;
+  width: 100%;
+  font-size: 22px;
   line-height: 37px;
   margin-top: 12px;
-  display: inline-block; 
-  text-align: left;
+  
 }
-
-.copyright2 {
-  font-size: 26px;
-  line-height: 37px;
-  margin-top: 12px;
-  display: inline-block; 
-  text-align: right;
-  margin-left: 4%;
-}
-
-.arrowRight {
-  width: 0; 
-  height: 0; 
-  border-top: 60px solid transparent;
-  border-bottom: 60px solid transparent;
-  border-left: 60px solid green;
-}
-
-.buttonStackDownload {
-  width: 153px; 
-  height: 49px; 
-  border-top: 2px solid black;
-  border-radius: 50px;
-  font-family: neue-haas-grotesk-display, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  color: #000;
-  background: transparent;
-}
-
-.buttonStackDownload:hover {
-  border-top: 2px solid black;
-  border-radius: 50px;
-  font-family: neue-haas-grotesk-display, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  background: #000;
-  color: #fff;
-}
-
-.buttonStackInfo {
-  width: 0; 
-  height: 0; 
-  border-top: 60px solid transparent;
-  border-bottom: 60px solid transparent;
-  border-left: 60px solid green;
-}
-
-.boxRelative {
-  margin-left: 4%;
-}
-
-.subTitle {
-  font-weight: 800;
-  font-size: 2.2rem;
-  margin-top: 15%;
-}
-
-
-/* .scaleDown {
-  width: 47.68vh;
-  height: 46.68vh;
-} */
-/* 
-.scaleFont {
-  width: 97.56vh;
-  height: 62.17vh;
-} */
