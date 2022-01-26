@@ -3,33 +3,39 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { useQuery } from '@apollo/client';
 import { QUERY_STATE } from '../utils/queries';
+import Local from '../utils/Local';
+import outrightHeader from '../assets/images/prison-yard-outright.png';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-// import NavLinks from './NavLinks';
-// const navLinks = ['Projects', 'About', 'Contact', 'Resume'];
-// const onHover = 'border-b-2 border-bright mx-1 md:mx-5';
 
 export default function StickyNav({ userCoords, userStates }) {
     const [userLocation, setUserLocation] = useState('');
     const { loading, data } = useQuery(QUERY_STATE, {
         variables: { state_name: userCoords.stateLocation },
     });
+    const userState = data?.state || {};
+    // if (!userState) {
+    //     userState = Local.getLocationData();
+    // }
+    
+    
+    
 
     
-    const userState = data?.state || {};
+   
     console.log(userState); 
     const weight = Number(userState.incarceration_rate)
-    const changeLocation = async (location) => {
-        try {
-            if (!userCoords.loading) {
-                const locationString = `${userState.state_name}, ${userCoords.stateLocation}`;
-                setUserLocation(locationString);
-            }
-            return userLocation;
+    // const changeLocation = async (location) => {
+    //     try {
+    //         if (!userCoords.loading) {
+    //             const locationString = `${userState.state_name}, ${userCoords.stateLocation}`;
+    //             setUserLocation(locationString);
+    //         }
+    //         return userLocation;
             
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
         
     
 
@@ -49,8 +55,8 @@ export default function StickyNav({ userCoords, userStates }) {
             }}>
             <Toolbar>
             
-            {userCoords.loading === true ? (
-
+            {userCoords.loading === true || !userCoords ? (
+                
                 <div className='loadingStats'> 
                     <p className='locationLoading'>The majority of people held in local jails are unconvicted pretrial
                     detainees
@@ -70,11 +76,13 @@ export default function StickyNav({ userCoords, userStates }) {
                     <p className='jailPopulationNav'> - Incarceration Rate : {userState.incarceration_rate} </p> 
                 </div>
                 
+                
             )}
       
           </Toolbar>
+          {/* <img src={outrightHeader} className='headerImg' alt="logo" /> */}
         </AppBar>
-    
+        
             
         
             {/* <a onClick={() => changeView('home')}>

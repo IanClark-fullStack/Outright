@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Slide, Grid, Switch, Box, Button, FormControlLabel } from '@mui/material';
 
 export default function BackButton({ checked, pageNum, handleChange, viewBackward }) {
-    const containerRef = React.useRef(null);
     // const containerRef = React.useRef(null);
     console.log(pageNum)
     
@@ -10,7 +9,6 @@ export default function BackButton({ checked, pageNum, handleChange, viewBackwar
     return (
         <>
         <Grid item
-            direction="row"
             justifyContent="flex-end"
             alignItems="flex-end"
         >

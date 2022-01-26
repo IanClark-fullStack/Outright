@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import { Slide, Grid, Switch, Box, Button, FormControlLabel } from '@mui/material';
 
 export default function ForwardButton({ checked, pageNum, handleChange, viewForward }) {
-    const containerRef = React.useRef(null);
+   console.log(pageNum)
     // const containerRef = React.useRef(null);
     return (
         <>
         
             <div className='onlyOnDesktop'>
-                <Grid item
-                    direction="row"
+                {/* <Grid item
                     justifyContent="flex-end"
-                    alignItems="flex-end"
-                >
+                    alignItems="flex-center"
+                > */}
                     <Button 
                         checked={checked} 
                         onChange={handleChange} 
@@ -30,18 +29,9 @@ export default function ForwardButton({ checked, pageNum, handleChange, viewForw
 
                     Learn&nbsp;More 
                     </Button>
-                </Grid>
+                {/* </Grid> */}
             </div>
             <div className='onlyOnMobile'>
-            <Grid container spacing={2} sx={{ marginTop: '2.5rem', marginLeft: 0,}}>
-                <Grid 
-                    item 
-                    xs={12} sm={12} 
-                    container
-                    direction="row"
-                    justifyContent="flex-end"
-                    alignItems="flex-end"
-                >
                     <Button 
                         checked={checked} 
                         onChange={handleChange} 
@@ -59,8 +49,6 @@ export default function ForwardButton({ checked, pageNum, handleChange, viewForw
 
                     
                     </Button>
-                </Grid>
-                </Grid>
             </div>
         
         </>

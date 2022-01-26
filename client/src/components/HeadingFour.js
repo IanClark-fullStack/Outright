@@ -1,50 +1,22 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState, useEffect } from 'react';
-import { jsx } from '@emotion/react'
-import { useQuery } from '@apollo/client';
-import { QUERY_STATE } from '../utils/queries';
+import React, { useState } from 'react';
 import { css, keyframes } from "@emotion/react";
 import { useTheme } from "@mui/material/styles";
 import Typography from '@mui/material/Typography';
-import Button from "@mui/material/Button";
-import ReactDOM from "react-dom";
 import Local from '../utils/Local';
 
-export default function Heading({ userState, pageNum }) {
+export default function HeadingFour({ pageNum }) {
     const [weight, setWeight] = useState(500);
     console.log(pageNum)
-    // if (!userCoords) {
-    //     weight = 500;
-    // } 
-
-    //     const { loading, data } = useQuery(QUERY_STATE, {
-    //     variables: { state_name: userCoords.stateLocation },
-    // });
-    // const userState = data?.state || {};
-    // console.log(userState); 
-    // weight = Number(userState.incarceration_rate)
-    
-    // const { loading, data } = useQuery(QUERY_STATE, {
-    //     variables: { state_name: userCoords.stateLocation },
-    // });
-    // const userState = data?.state || {};
-    // console.log(userState); 
-    // const weight = Number(userState.incarceration_rate)
-    
-    // console.log(weight)
 
     const getData = async () => {
         try {
-            const { ...userData } = await Local.getLocationData(userState);
+            const { ...userData } = await Local.getLocationData();
             console.log({...userData})
-            if (userState) {
-                const newVal = Number(userState.incarceration_rate); 
-                setWeight(newVal); 
-                return newVal;
-            } else if (userData) {
+    
                 const val = userData.incarceration_rate; 
                 setWeight(val)
-            }
+            
             return weight; 
         } catch (err)  {
             console.log(err);
@@ -93,22 +65,15 @@ export default function Heading({ userState, pageNum }) {
         }
     }
 
-    return (
-        <>
-        
-            {!userState ? ( <h2>outright</h2> ) 
-
-            : (  
+    return (       
                 <>
                     <div css={animatedItem}>
                             
                                 <Typography variant="h1" css={animatedItem}>
-                                    outright*
+                                    Figures
                                 </Typography>
                     </div>
                 {/* {exit && <Button onClick={() => setExit(false)}>Click to enter</Button>} */}
                 </>
-            )}
-        </>
     );
 }

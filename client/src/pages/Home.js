@@ -4,96 +4,156 @@ import Title from '../components/Title';
 import Location from '../components/Location';
 import BackButton from '../components/BackButton';
 import ForwardButton from '../components/ForwardButton';
+import outrightHeader from '../assets/images/prison-yard-outright.png';
+import About from './About';
+import HomeButton from '../components/HomeButton';
+import ProceedingNav from '../components/ProceedingNav';
+import courtHouse from '../assets/images/comp1/service-pnp-hec.png';
+import voteCount from '../assets/images/comp1/service-pnp.png';
+import prisonYard from '../assets/images/comp1/Prison-yard-outright2.png';
 import SlideForward from '../components/SlideForward';
-import { Grid, Slide, Box, Button } from '@mui/material';
+import { Grid, Slide, Box, Button, Item } from '@mui/material';
+
+
+
 export default function Home() {
     const [pageNum, setPageNum] = useState(1);
     const [checked, setChecked] = React.useState(false);
-    const containerRef = React.useRef(null);
+    
     // const containerRef = React.useRef(null);
-    console.log(pageNum)
+    
     const handleChange = () => {
         setChecked((prev) => !prev);
     };
     const viewForward = (num) => setPageNum(num + 1);
+    const viewHome = () => setPageNum(1);
     const viewBackward = (num) => setPageNum(num - 1);
     const defaultView = () => {
         if (pageNum === 1) {
             return <>
-            <Grid container spacing={2} sx={{ marginTop: '2.5rem', marginLeft: 0,}}>
-                <Grid 
-                    item 
-                    xs={1} sm={1} 
-                    direction="column"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
-                >
+                <Box sx={{ flexGrow: 1 }}>
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 4, md: 12 }}>
                         
-                        <BackButton checked={checked} handleChange={handleChange} pageNum={pageNum} viewBackward={viewBackward} />
-                    {/* <Button checked={checked} onChange={handleChange} onClick={() => viewForward(pageNum)} sx={{ width: 0, height: 0, borderBottom: '12px solid transparent', borderTop: '12px solid transparent', borderRight: '12px solid black', padding: 0, display: 'inline-block' }}>  </Button> */}
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={10}>
-                    <Location />
-                    <div className='onlyOnMobile'>
-                        <ForwardButton checked={checked} handleChange={handleChange} pageNum={pageNum} viewForward={viewForward} />
-                    </div>  
-                </Grid>
-
-                <div className='onlyOnDesktop'>
-                    <Grid 
-                        item 
-                        xs={12} sm={12} md={1} 
-                        container
-                        direction="column"
-                        justifyContent="flex-start"
-                        alignItems="flex-end"
-                    >
-                        
-                        <ForwardButton checked={checked} handleChange={handleChange} pageNum={pageNum} viewForward={viewForward} />
-                        {/* <Button checked={checked} onChange={handleChange} onClick={() => viewForward(pageNum)} sx={{ width: 0, height: 0, borderBottom: '12px solid transparent', borderTop: '12px solid transparent', borderLeft: '12px solid black', padding: 0, display: 'inline-block' }}>  </Button> */}
-                        
+                        {/* <Grid item xs={0} sm={0} md={1}>
+                            <h5>xs=2</h5>
+                        </Grid> */}
+                        <Grid item xs={3} sm={3} md={10}>
+                            <Location />
+                        </Grid>
+                        <Grid item xs={1} sm={1} md={2}>
+                            <Grid container direction='row' justifyContent='flex-end' alignItems='center'>
+                                <ForwardButton checked={checked} handleChange={handleChange} pageNum={pageNum} viewForward={viewForward} />
+                            
+                            </Grid>
+                        </Grid>
                     </Grid>
-                </div>
-            </Grid>
+                </Box>
+            
             </>
         }
     }
-    
-  
+    let refNum = pageNum - 1;
 
-  
-   
     return (
-        <main ref={containerRef}>
-            <Grid container spacing={2} sx={{ marginTop: '2.5rem',}}>
-                {/* <Grid item xs={1} sm={1}>
-                    <Button checked={checked} onChange={handleChange} onClick={() => viewBackward(pageNum)} sx={{ width: 0, height: 0, borderBottom: '60px solid transparent', borderTop: '60px solid transparent', borderLeft: '60px solid green', }}> My button </Button>
-                </Grid> */}
-                <Grid item xs={10} sm={10}> 
+        <>
+        
+        
+            <main>
+                {pageNum === 1 && 
+                <>
+                <header className='fullWidth'>
+                    <img src={outrightHeader} className='headerImg' alt="logo" />
+                </header>
+                
+                <section style={{margin: '1rem 2rem'}}>
+                    <Box sx={{ flexGrow: 1, }}>
+                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 4, md: 12 }}>
+                            
+                            {/* <Grid item xs={0} sm={0} md={1}>
+                                <h5>xs=2</h5>
+                            </Grid> */}
+                            <Grid item xs={3} sm={3} md={10}>
+                                <Location pageNum={pageNum} />
+                            </Grid>
+                            <Grid item xs={1} sm={1} md={2}>
+                                <Grid container direction='row' justifyContent='flex-end' alignItems='center'>
+                                    <ForwardButton checked={checked} handleChange={handleChange} pageNum={pageNum} viewForward={viewForward} />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </section>
+            </>
+            }
+           
+            {pageNum === 2 &&
+            <>
+            <header className='fullWidth onlyOnMobile'>
+                <Grid container direction="row" className='fullWidthVar' columns={5} spacing={0}>
+                    <Grid item xs={2} sm={2}>
+                        <img className='fullWidthVar' src={voteCount} alt="policy makers" />
+                    </Grid>
+                    <Grid item xs={2} sm={2}>
+                        <img className='fullWidthVar' src={courtHouse} alt="policy makers" />
+                    </Grid>
+                    <Grid item xs={1} sm={1}>
+                        <img className='fullWidthVar' src={prisonYard} alt='vote counts' />
+                    </Grid>
+                    
+                    
                     
 
-                    {/* <SlideForward pageNum={pageNum} viewForward={viewForward} />  */}
-                            {defaultView()}
-
-                    {pageNum === 2 &&
-                        <Slide direction="left" in={checked} container={containerRef.current}>
-                            
-                        <Title />
-                    </Slide>  
-}  
-                </Grid>
-                {/* <Grid item xs={1} sm={1} direction="row"
-                justifyContent="flex-end"
-                alignItems="flex-end">
-                    <Button checked={checked} onChange={handleChange} onClick={() => viewForward(pageNum)} sx={{ width: 0, height: 0, borderBottom: '26px solid transparent', borderTop: '26px solid transparent', borderLeft: '26px solid green' }}> My button </Button>
-                </Grid> */}
-            </Grid>
+                </Grid> 
+                </header>
+            <section style={{margin: '20vh 2rem'}}>
+                
             
-                {/* {pageSelect === 2 && <Projects />}
-                {pageSelect === 3 && <Contact />}
-                {pageSelect === 4 && <Resume />} */}
-            {/* <Footer />  */}
+                <Box sx={{ flexGrow: 1,}}>
+                <ProceedingNav />
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 5, sm: 5, md: 12 }} sx={{marginTop: '10%',}}>
+                        <Grid item xs={3} sm={3} md={1}>
+                            <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start">
+                                <BackButton checked={checked} handleChange={handleChange} pageNum={pageNum} viewBackward={viewBackward} />
+                            </Grid>
+                            
+                        </Grid>
+
+                   
+                        
+
+                        <Grid item xs={3} sm={3} md={10}>
+                            <Grid container spacing={{ xs: 2, md: 3 }} columns={5}>
+                                <About pageNum={pageNum} />
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={3} sm={3} md={1}>
+                            <Grid container direction='row' justifyContent='flex-end' alignItems='flex-start'>
+                                <ForwardButton checked={checked} handleChange={handleChange} pageNum={pageNum} viewForward={viewForward} />
+                            </Grid>
+                            
+                        </Grid>
+                    </Grid>
+                        
+                        
+               
+
+                    
+                            
+                </Box>
+               
+                            <Grid container direction="row" justifyContent="flex-start" alignItems="flex-end">
+                                <HomeButton pageNum={pageNum} viewHome={viewHome} />
+                                </Grid>
+                    
+                    {/* <About pageNum={pageNum} checked={checked} handleChange={handleChange} pageNum={pageNum} viewForward={viewForward} /> */}
+                </section>
+            </>
+            
+            }  
+                
         </main>
-  )  
+        
+        </>
+  )   
 };

@@ -5,8 +5,9 @@ import { AnimateKeyframes }  from 'react-simple-animate';
 import Heading from '../components/Heading';
 import { determineFontWeight } from '../utils/helpers';
 import Local from '../utils/Local';
+import { FontProvider } from '../utils/context/FontContext';
 import { Typography } from '@mui/material';
-export default function FontDisplay({ userCoords, userStates }) {
+export default function FontDisplay({ userCoords, userStates, pageNum }) {
     // Activate and Deactivate child component animations by lifting state from parent component
         // Pass state to child components 
     const [newFontWeight, setNewFontWeight] = useState({
@@ -24,9 +25,7 @@ export default function FontDisplay({ userCoords, userStates }) {
     }
     
     const userState = data?.state || {};
-    console.log(userState); 
     const weight = Number(userState.incarceration_rate)
-    console.log(weight);
 
     const handleDataChange = async () => {
         try {
@@ -125,9 +124,10 @@ export default function FontDisplay({ userCoords, userStates }) {
             {!userState ? ( <div>Loading...</div> ) 
 
             : (  <div>
-        
+
                 <div>
-                    <Heading userState={userState} />
+                <FontProvider>
+                    <Heading userState={userState} pageNum/>
                 {/* <h2 style={styles.shiftWeight}>Outright</h2> */}
                     <AnimateKeyframes
                     play
@@ -142,6 +142,7 @@ export default function FontDisplay({ userCoords, userStates }) {
                         {/* <h2 style={styles.keyframes}>Outright v1</h2> */}
                         </>
                     </AnimateKeyframes>
+                </FontProvider>
                 
                 </div>
     

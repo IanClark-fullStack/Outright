@@ -99,6 +99,22 @@ theme.typography.h1 = {
     lineHeight: '34rem',
   },
 };
+theme.typography.h3 = {
+  fontSize: '11rem',
+  lineHeight: '11.2rem',
+  '@media (min-width:600px)': {
+    fontSize: '9rem',
+    lineHeight: '9.6rem'
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '10.5rem',
+    lineHeight: '11rem'
+  },
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '24.625rem',
+    lineHeight: '25rem',
+  },
+};
 theme.typography.h5 = {
   fontSize: '1.2rem',
   '@media (min-width:600px)': {
@@ -113,17 +129,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-      <div className="App">
-        
-        
-            
-              <header className="App-header">
-              
-                <Home />
-                
-              </header>
-        
-      </div>
+        <div className="App">
+          
+          <Home />
+        </div>
       </ThemeProvider>
     </ApolloProvider>
   );

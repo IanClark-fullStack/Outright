@@ -4,16 +4,17 @@ import Title from '../components/Title';
 import JailData from '../components/JailData';
 import CountyDisplay from './CountyDisplay';
 import SlideForward from './SlideForward';
-import outrightHeader from '../assets/images/outright-header.png';
+import outrightHeader from '../assets/images/prison-yard-outright.png';
 import StickyNav from '../components/StickyNav';
 import ForwardButton from '../components/ForwardButton';
+import ButtonStack from '../components/ButtonStack';
 // import { searchData } from '../utils/API';
 // import { readRemoteFile } from 'react-papaparse'
 import { geoLocate } from '../utils/GEO';
 import { useQuery } from '@apollo/client';
 import { QUERY_STATES } from '../utils/queries';
 import Local from '../utils/Local';
-import { Grid } from '@mui/material';
+import { Grid, Slide, Box, Button } from '@mui/material';
 import { getData } from '../utils/API';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
@@ -25,7 +26,7 @@ import { useMutation } from '@apollo/client';
 import { browserLocation } from '../utils/GEO';
 import FontDisplay from './FontDisplay';
 
-export default function Location() {
+export default function Location({ pageNum }) {
     const [userCoords, setUserCoords] = useState({
         loading: true,
         location: undefined,
@@ -75,36 +76,62 @@ export default function Location() {
         {!userCoords ? ( <div>Loading...</div> ) 
 
             : ( <>
-                
-                <StickyNav userCoords={userCoords} userStates={userStates} /> 
-                <div id="fontAppear">
-                    {/* <Title userCoords={userCoords} />  */}
-                    
-                    <FontDisplay userCoords={userCoords} userStates={userStates} />    
-                    <div className='onlyOnMobile'>
-                        <ForwardButton /> 
-                    </div>
-                    <Grid item xs={10} sm={10}>       
-                        <p className='introBlock'>OUTRIGHT is a parametric display typeface that's tied to state incarceration numbers. It's appearance is subject to your state's rates. This project aims to create conversation around the act of Prison Gerrymandering. We want to describe what it is and provide resources for people that want to take action.</p>
-                    </Grid>
+                    <StickyNav userCoords={userCoords} userStates={userStates} /> 
+                    {/* <img src={outrightHeader} className='headerImg' alt="logo" /> */}
+                    <Box sx={{ flexGrow: 1 }}>
 
-                        <Grid item xs={12} sm={2}
-                        container
-                        direction="row"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                            <p className="introBlock">*All data derived from LoremSource.org and is updated daily. If there are any display issues please leave us a message HERE<br />
-                                <span className="copyright">VERSION 1.0</span>
-                                <span className="copyright2">Ⓒ2022</span>
-                                
-                            </p>
-                            
+                        {/* <Title userCoords={userCoords} />  */}
+                        
+                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 7, sm: 7, md: 5 }}> 
+                                <Grid item xs={7} sm={7} md={4}>  
+                                    <FontDisplay userCoords={userCoords} userStates={userStates} pageNum={pageNum} /> 
+                                    
+                                </Grid> 
+
+                                <Grid item xs={7} sm={7} md={1}>
+                                    <div className='onlyOnMobile'>
+                                        <ForwardButton /> 
+                                    </div>
+                                </Grid>
                         </Grid>
+                    </Box>
+                    <Box sx={{ flexGrow: 1 }}>
+                                
+                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 7, sm: 7, md: 5 }}> 
+                            <Grid item xs={7} sm={7} md={4}>  
+                                <p className='introBlock'>OUTRIGHT is a parametric display typeface that's tied to state incarceration numbers. It's appearance is subject to your state's rates. This project aims to create conversation around the act of Prison Gerrymandering. We want to describe what it is and provide resources for people that want to take action.</p>
+                                <div className='onlyOnDesktop'>
+                                    <ButtonStack /> 
+                                </div>
+                                    
+                            </Grid>
+                            
+
+                            <Grid item xs={7} sm={7} md={1}>
+                                <p className="dataSourcesBlock">*All of our data is derived from prisonpolicy.org and is updated daily. Just like our  democracy, outright is a work-in-progress. If there are any display issues please reach out!<br />
+                                </p>
+                            </Grid>
+                        
+                        </Grid>
+                    </Box>
+                    <div className='onlyOnMobile'>
+                    <Box sx={{ flexGrow: 1 }}>
+                                
+                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 8, sm: 8, md: 0 }}>
+                                    
+                                    <Grid item xs={3} sm={3} md={1}>
+                                        <ButtonStack />
+                                    </Grid>
+                                    <Grid item xs={5} sm={5} md={1}>
+                                        <p className="dataSourcesBlock">*All of our data is derived from prisonpolicy.org and is updated daily. Just like our  democracy, outright is a work-in-progress. If there are any display issues please reach out!<br />
+                                        </p>
+                                    </Grid>
+        
+                                </Grid>
+                            </Box>
+                    </div>
                     
-            
-                
-                </div>
-                </> 
+                    </> 
                 )}
         </>
 

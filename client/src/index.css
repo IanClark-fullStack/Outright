@@ -17,9 +17,10 @@
 
 body {
   font-family: neue-haas-grotesk-display, sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
   background: #fff;
+  margin: 0; 
 }
 
 
@@ -34,7 +35,7 @@ h1 {
   /* font-size: 16rem; */
 }
 
-h2 {
+h2, h3, h4, h5, h6 {
   font-family: 'Outright';
   font-weight: 500;
   line-height: 14rem;
@@ -46,7 +47,40 @@ h2 {
 header {
   font-family: neue-haas-grotesk-display, sans-serif;
   font-style: normal;
+  font-weight: 400;
   background: #fff;
+  background-size: cover;
+  max-width: 100%;
+  width:100%;
+  
+}
+
+.fullWidth {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.fullWidthTitle {
+  width: 90vw;
+  position: relative;
+  left: 5%;
+}
+
+.fullVar{
+  width: 80vw;
+  position: relative;
+  left: 56%;
+  right: 40%;
+  margin-left: -28vw;
+  margin-right: -50vw;
+}
+.fullWidthVar{
+  
+  max-height: 26vh;
 }
 
 .shiftWeight2 {
@@ -99,48 +133,7 @@ header {
 	font-variation-settings: 'wght' 700 ;
   color: #000;
 }
-.fontMinusThree {
-  font-family: 'Outright';
-  /* font-weight: 00; */
-  /* transition: all 250ms linear; */
-	font-variation-settings: 'wght' 600 ;
-  color: #000;
-}
-.fontMinusFour {
-  font-family: 'Outright';
-  /* font-weight: 00; */
-  /* transition: all 250ms linear; */
-	font-variation-settings: 'wght' 500 ;
-  color: #000;
-}
-.fontMinusFive {
-  font-family: 'Outright';
-  /* font-weight: 00; */
-  /* transition: all 250ms linear; */
-	font-variation-settings: 'wght' 400 ;
-  color: #000;
-}
-.fontMinusSix {
-  font-family: 'Outright';
-  /* font-weight: 00; */
-  /* transition: all 250ms linear; */
-	font-variation-settings: 'wght' 300 ;
-  color: #000;
-}
-.fontMinusSeven{
-  font-family: 'Outright';
-  /* font-weight: 00; */
-  /* transition: all 250ms linear; */
-	font-variation-settings: 'wght' 200 ;
-  color: #000;
-}
-.fontMinusEight {
-  font-family: 'Outright';
-  font-weight: 00;
-  transition: all 250ms linear; 
-	font-variation-settings: 'wght' 100 ;
-  color: #000;
-}
+
 
 .sourceNumber {
   font-size: 0.45rem;
@@ -162,8 +155,24 @@ header {
 .introBlock {
   font-family: neue-haas-grotesk-display, sans-serif;
   font-size: 26px;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 400;
   line-height: 36px;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+.dataSourcesBlock {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
 @media only screen and (max-width: 600px) {
@@ -173,7 +182,43 @@ header {
   .onlyOnMobile {
     display: block;
   }
+  .dataSourcesBlock {
+    font-size: 14px;
+  }
+
+  .buttonStackDownload {
+    width: 86px; 
+    height: 21px; 
+    font-size: 12px;
+  }
+  .shiftDown {
+    margin-top: 30vh;
+  }
+  .introBlock {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+  }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  .onlyOnDesktop {
+    display: none;
+  }
+  .onlyOnMobile {
+    display: block;
+  }
+  .scaleDown {
+    width: 77.68%;
+    height: 76.68%;
+  }
+  
+}
+
 
 
 @media only screen and (min-width: 600px) {
@@ -183,6 +228,8 @@ header {
   .onlyOnDesktop {
     display: block;
   }
+
+  
 }
 
 .copyright {
@@ -209,3 +256,62 @@ header {
   border-bottom: 60px solid transparent;
   border-left: 60px solid green;
 }
+
+.buttonStackDownload {
+  width: 153px; 
+  height: 49px; 
+  border-top: 2px solid black;
+  border-radius: 50px;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  color: #000;
+  background: transparent;
+}
+
+.buttonStackDownload:hover {
+  border-top: 2px solid black;
+  border-radius: 50px;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  background: #000;
+  color: #fff;
+}
+
+.buttonStackInfo {
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
+}
+
+.boxRelative {
+  margin-left: 4%;
+}
+
+.subTitle {
+  font-weight: 800;
+  font-size: 2.2rem;
+}
+
+.projectDefinition {
+  font-size: 21px;
+  line-height: 145%;
+
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+/* .scaleDown {
+  width: 47.68vh;
+  height: 46.68vh;
+} */
+/* 
+.scaleFont {
+  width: 97.56vh;
+  height: 62.17vh;
+} */
