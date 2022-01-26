@@ -5,17 +5,10 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
-import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home'; 
 import OutrightWOFF2 from './assets/font/OutRight-Variable.woff2';
-import OutrightWoff from './assets/font/OutRight-Variable.woff';
-import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
-import { Typography } from '@mui/material';
-import Title from './components/Title';
-// import { useEffect } from 'react';
-// // import { createLocation } from './utils/API';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

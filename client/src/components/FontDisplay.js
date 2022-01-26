@@ -1,28 +1,28 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_STATE } from '../utils/queries';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AnimateKeyframes }  from 'react-simple-animate';
 import Heading from '../components/Heading';
 import { determineFontWeight } from '../utils/helpers';
 import Local from '../utils/Local';
 import { FontProvider } from '../utils/context/FontContext';
-import { Typography } from '@mui/material';
+
 export default function FontDisplay({ userCoords, userStates, pageNum }) {
     // Activate and Deactivate child component animations by lifting state from parent component
         // Pass state to child components 
-    const [newFontWeight, setNewFontWeight] = useState({
-        default: 500,
-        loadingWeight: true,
-    }); 
+    // const [newFontWeight, setNewFontWeight] = useState({
+    //     default: 500,
+    //     loadingWeight: true,
+    // }); 
     // const [localData, setNewFontWeight] = useState({}); 
 
     const { loading, data } = useQuery(QUERY_STATE, {
         variables: { state_name: userCoords.stateLocation },
     });
 
-    const handleChange = () => {
-        setNewFontWeight({ loadingWeight: false });
-    }
+    // const handleChange = () => {
+    //     setNewFontWeight({ loadingWeight: false });
+    // }
     
     const userState = data?.state || {};
     const weight = Number(userState.incarceration_rate)
@@ -40,59 +40,7 @@ export default function FontDisplay({ userCoords, userStates, pageNum }) {
 
     handleDataChange()
 
-    const animateClass = {}
-    // const styles = {
-    //     shiftWeight : {
-    //         fontVariationSettings: 'wght 500',
-    //         animation: 'bold-to-light 2000ms linear 0.3s forwards',
-    //     },
-    //     // 'shiftWeight > h2': {
-    //     //     animation: 'bold-to-light 2000ms linear 0.3s forwards',
-    //     // },
-    //     '@keyframes bold-to-light': {
-    //         '60%': {
-    //             fontVariationSettings: 'wght 400',
-    //         },
-    //         '100%': {
-    //             fontVariationSettings: `wght ${weight}`,
-    //         }
-    //     } 
-    // };
-  
-   
     
-   let total = 0; 
-    // useEffect(() => {
-    //     let weight = 0; 
-    //     async function changeFont() {
-    //         // let response = await getRelevantData(userCoords.countyLocation, userCoords.stateLocation);
-    //         // let getFontWeight = await determineFontWeight(userState, userStates);
-    //         // console.log(getFontWeight)
-    //         weight = Number(userState.incarceration_rate)
-    //         setNewFontWeight({default: Number(userState.incarceration_rate)})
-    //         // console.log(response)
-    //         // setCountyData({loading: false,  ...response.county  });
-    //         // setStateData([...response.stateCounties]);
-            
-    //         return weight
-    //     }
-        
-    //     changeFont();
-    // }, [userState.incarceration_rate]);
-    // console.log(newFontWeight)
-    
-
-   
-        // setNewFontWeight({
-        // loading: false, 
-        // fontWeight: fontRate,
-        // twenty: percentOne,
-        // sixty: percentTwo
-        // })
-    
-    
-    // console.log(newFontWeight)
-
     
     
 

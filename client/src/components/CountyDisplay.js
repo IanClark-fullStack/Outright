@@ -58,28 +58,28 @@ export default function CountyDisplay({userCoords}) {
     // - Reference to Mutation at index[0]
     const [addCountyData, { error }] = useMutation(ADD_COUNTY_DATA);
     
-    const handleCountyChange = async () => {
-        try {
-            const { data } = await addCountyData({
+    // const handleCountyChange = async () => {
+    //     try {
+    //         const { data } = await addCountyData({
                 
-                variables: { 
-                    state_name: countyData.state_name,
-                    county_name: countyData.county_name,
-                    last_update: countyData.last_update,
-                    flip_code: countyData.flip_code,
-                    jail_population: countyData.jail_population,
-                    place_type: countyData.place_type,
-                    title: countyData.title, 
-                    resident_population: countyData.resident_population,
-                    incarceration: countyData.incarceration
-                }
-            })
-            console.log(data)
-        } catch (err) {
-            console.log(err);
-        }
+    //             variables: { 
+    //                 state_name: countyData.state_name,
+    //                 county_name: countyData.county_name,
+    //                 last_update: countyData.last_update,
+    //                 flip_code: countyData.flip_code,
+    //                 jail_population: countyData.jail_population,
+    //                 place_type: countyData.place_type,
+    //                 title: countyData.title, 
+    //                 resident_population: countyData.resident_population,
+    //                 incarceration: countyData.incarceration
+    //             }
+    //         })
+    //         console.log(data)
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
         
-    }
+    // }
 
 
     return (

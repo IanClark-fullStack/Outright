@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Slide, Grid, Switch, Box, Button, FormControlLabel } from '@mui/material';
+import { Button } from '@mui/material';
 
 export default function ForwardButton({ checked, pageNum, handleChange, viewForward }) {
    console.log(pageNum)
@@ -8,10 +7,7 @@ export default function ForwardButton({ checked, pageNum, handleChange, viewForw
         <>
         
             <div className='onlyOnDesktop'>
-                {/* <Grid item
-                    justifyContent="flex-end"
-                    alignItems="flex-center"
-                > */}
+                
                     <Button 
                         checked={checked} 
                         onChange={handleChange} 
@@ -29,7 +25,7 @@ export default function ForwardButton({ checked, pageNum, handleChange, viewForw
 
                     Learn&nbsp;More 
                     </Button>
-                {/* </Grid> */}
+               
             </div>
             <div className='onlyOnMobile'>
                     <Button 

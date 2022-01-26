@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Slide, Grid, Switch, Box, Button, FormControlLabel } from '@mui/material';
+import {  Grid, Button } from '@mui/material';
 
 export default function BackButton({ checked, pageNum, handleChange, viewBackward }) {
     // const containerRef = React.useRef(null);

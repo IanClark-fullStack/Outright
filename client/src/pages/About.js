@@ -5,7 +5,7 @@ import voteCount from '../assets/images/comp1/service-pnp.png';
 
 
 export default function About({ pageNum }) {
-    let refNum = pageNum - 1;
+    
     return (
             <>
                 <Box sx={{ flexGrow: 1, }}>

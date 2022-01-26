@@ -35,7 +35,7 @@ export default function SlideForward({ pageNum, viewForward }) {
                 theme.palette.mode === 'light' ? 'grey.100' : 'grey.900',
                 overflow: 'hidden',
             }}
-            ref={containerRef}
+           
         >
            
             <Button checked={checked} onChange={handleChange} onClick={() => viewForward(pageNum)} sx={{ width: 0, height: 0, borderBottom: '60px solid transparent', borderTop: '60px solid transparent', borderLeft: '60px solid green', }}> My button </Button>
@@ -43,7 +43,7 @@ export default function SlideForward({ pageNum, viewForward }) {
             control={<Switch checked={checked} onChange={handleChange} />}
             label="Show from target"
             /> */}
-            <Slide direction="left" in={checked} container={containerRef.current}>
+            <Slide direction="left" in={checked}>
                 <Title />
             </Slide>
        

@@ -1,13 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState, useEffect } from 'react';
-import { jsx } from '@emotion/react'
-import { useQuery } from '@apollo/client';
-import { QUERY_STATE } from '../utils/queries';
+import React, { useState } from 'react';
 import { css, keyframes } from "@emotion/react";
-import { useTheme } from "@mui/material/styles";
 import Typography from '@mui/material/Typography';
-import Button from "@mui/material/Button";
-import ReactDOM from "react-dom";
 import Local from '../utils/Local';
 
 export default function Heading({ userState, pageNum }) {
@@ -50,8 +44,6 @@ export default function Heading({ userState, pageNum }) {
             console.log(err);
         }
     }
-   
-    const titleValues = ['outright*', 'false front', 'amended', 'figures', 'liable', 'leaders']; 
 
     const userData = getData(); 
     console.log(weight)
@@ -68,34 +60,13 @@ export default function Heading({ userState, pageNum }) {
     font-variation-settings: 'wght' ${weight};
     }
     `;
-    const myEffectExit = keyframes`
-    0% {
-        font-variation-settings: 'wght' ${weight};
-    }
-    100% {
-        font-variation-settings: 'wght' 500;
-    }
-    `;
-    const theme = useTheme();
+    
     const animatedItem = css`
         animation: ${myEffect} 3000ms linear 0.3s forwards;
     `;
-    // const animatedItemExiting = css`
-    //   animation: ${myEffectExit} 3000ms ${theme.transitions.easing.easeInOut};
-    //   font-variation-setting: 'wght' 500;
-    // `;
-
-    const textContent = () => {
-        if (pageNum === 1) {
-            return <> {titleValues[0]} </>
-        } else if (pageNum === 2) {
-            return <> {titleValues[1]} </>
-        }
-    }
 
     return (
         <>
-        
             {!userState ? ( <h2>outright</h2> ) 
 
             : (  
