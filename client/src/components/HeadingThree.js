@@ -7,12 +7,12 @@ import Local from '../utils/Local';
 
 export default function HeadingThree({ pageNum }) {
     const [weight, setWeight] = useState(500);
-    console.log(pageNum)
+   
 
     const getData = async () => {
         try {
             const { ...userData } = await Local.getLocationData();
-            console.log({...userData})
+           
     
                 const val = userData.incarceration_rate; 
                 setWeight(val)

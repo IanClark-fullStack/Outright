@@ -64,7 +64,7 @@ export default function CountyDisplay({userCoords}) {
                 
     //             variables: { 
     //                 state_name: countyData.state_name,
-    //                 county_name: countyData.county_name,
+    //                 county_name: coheroku createuntyData.county_name,
     //                 last_update: countyData.last_update,
     //                 flip_code: countyData.flip_code,
     //                 jail_population: countyData.jail_population,

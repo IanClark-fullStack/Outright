@@ -1,7 +1,8 @@
 {
     "name": "outright-app",
     "version": "1.0.0",
-    "description": "Update on deploy",
+    "homepage": "https://dry-gorge-08289.herokuapp.com/",
+    "description": "OUTRIGHT is a parametric typeface, intended for display use and as a vehicle for conversation. It’s look is based on the flat-sided gothic-style headlines found in newspapers made and distributed within prisons. The incisions mimic the inconsistencies in the printing techniques used on those newspapers back in the day.",
     "main": "server/server.js",
     "scripts": {
         "start": "node server/server.js",
@@ -17,5 +18,8 @@
     "license": "ISC",
     "devDependencies": {
         "concurrently": "^5.1.0"
+    },
+    "dependencies": {
+        "depcheck": "^1.4.3"
     }
 }

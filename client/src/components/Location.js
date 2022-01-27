@@ -42,9 +42,7 @@ export default function Location({ pageNum }) {
         
     
         useEffect(() => {
-            // Promise.resolve(detector())
-            // .then(location => setUserCoords({ loading: false, location, stateLocation: location[0].long_name, countyLocation: location[1].long_name }))
-            // .catch(error => setUserCoords({ loading: false, error }));
+           
             Promise.resolve(detector())
             .then(location => setUserCoords({ loading: false, location, countyLocation: location[1].long_name, stateLocation: location[2].long_name }))
             .catch(error => setUserCoords({ loading: false, error }));

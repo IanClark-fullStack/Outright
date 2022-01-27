@@ -7,8 +7,6 @@ import Local from '../utils/Local';
 
 export default function HeadingTwo({ pageNum }) {
     const [weight, setWeight] = useState(500);
-    console.log(pageNum)
-
     const getData = async () => {
         try {
             const { ...userData } = await Local.getLocationData();
@@ -26,9 +24,7 @@ export default function HeadingTwo({ pageNum }) {
     const titleValues = ['outright*', 'false front', 'amended', 'figures', 'liable', 'leaders']; 
 
     const userData = getData(); 
-    console.log(weight)
-    // const fontWeight = stateData.incarceration_rate; 
-    console.log(userData)
+   
     const myEffect = keyframes`
     0% {
     font-variation-settings: 'wght' 700;

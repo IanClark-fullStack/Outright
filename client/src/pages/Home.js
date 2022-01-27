@@ -19,7 +19,7 @@ import { Grid, Slide, Box, Button, Item } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
     mainFeatured: {
-        height: 300,
+        height: 400,
         color: theme.palette.common.white,
         marginBottom: theme.spacing(4),
         backgroundImage: `url(${outrightHeader})`,

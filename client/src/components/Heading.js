@@ -6,7 +6,7 @@ import Local from '../utils/Local';
 
 export default function Heading({ userState, pageNum }) {
     const [weight, setWeight] = useState(500);
-    console.log(pageNum)
+    
     // if (!userCoords) {
     //     weight = 500;
     // } 
@@ -46,9 +46,9 @@ export default function Heading({ userState, pageNum }) {
     }
 
     const userData = getData(); 
-    console.log(weight)
+    
     // const fontWeight = stateData.incarceration_rate; 
-    console.log(userData)
+
     const myEffect = keyframes`
     0% {
     font-variation-settings: 'wght' 700;
