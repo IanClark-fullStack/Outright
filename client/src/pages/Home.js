@@ -1,7 +1,6 @@
-// import { geolocated } from "react-geolocated";
-import React, { useState, useRef } from 'react';
+
+import React, { useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import Title from '../components/Title'; 
 import Location from '../components/Location';
 import BackButton from '../components/BackButton';
 import ForwardButton from '../components/ForwardButton';
@@ -10,12 +9,8 @@ import About from './About';
 import Solution from './Solution';
 import HomeButton from '../components/HomeButton';
 import ProceedingNav from '../components/ProceedingNav';
-import courtHouse from '../assets/images/comp1/service-pnp-hec.png';
-import voteCount from '../assets/images/comp1/service-pnp.png';
-import prisonYard from '../assets/images/comp1/Prison-yard-outright2.png';
 import outrightHeaderCols from '../assets/images/comp1/outright-headerCols1.jpg';
-import SlideForward from '../components/SlideForward';
-import { Grid, Slide, Box, Button, Item } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
     mainFeatured: {

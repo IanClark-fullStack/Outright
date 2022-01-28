@@ -5,10 +5,8 @@ import { useQuery } from '@apollo/client';
 import { QUERY_STATE } from '../utils/queries';
 import Local from '../utils/Local';
 import outrightHeader from '../assets/images/prison-yard-outright.png';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 export default function StickyNav({ userCoords, userStates }) {
-    const [userLocation, setUserLocation] = useState('');
     const { loading, data } = useQuery(QUERY_STATE, {
         variables: { state_name: userCoords.stateLocation },
     });
@@ -80,22 +78,10 @@ export default function StickyNav({ userCoords, userStates }) {
             )}
       
           </Toolbar>
-          {/* <img src={outrightHeader} className='headerImg' alt="logo" /> */}
+         
         </AppBar>
         
-            
-        
-            {/* <a onClick={() => changeView('home')}>
-                <h4 className='justify-start text-3xl ml-2 md:text-6xl'>iC</h4>
-            </a> */}
-                {/* <NavLinks navLinksProp={navLinks} /> */}
-            {/* <ul className='flex justify-end mx-2 md:ml-14'>
-                
-                { navLinks.map((link, index) => 
-                    <NavLinks key={index} link={link} changeView={changeView} pageSelect={pageSelect} /> 
-                )}
-            
-            </ul> */}
+       
         
         </>
        
