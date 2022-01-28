@@ -1,40 +1,42 @@
+
+import './App.css';
+import Home from './pages/Home'; 
+import OutrightWOFF2 from './assets/font/OutRight-Variable.woff2';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// Import Provider to make Each Request work w/ Apollo Server 
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import './App.css';
-import Home from './pages/Home'; 
-import OutrightWOFF2 from './assets/font/OutRight-Variable.woff2';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-// Construct our main GraphQL API endpoint
+import { setContext } from '@apollo/client/link/context';
+// Create a link to Graph Ql 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
-
-// Construct request middleware that will attach the JWT token to every request as an `authorization` header
+// Create middleware for requests to attach JSON web token as a header for all requests. 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
+  // Retrieve token from local storage 
   const token = localStorage.getItem('id_token');
-  console.log(`Bearer ${token}`);
-  // return the headers to the context so httpLink can read them
+  // Return out of this function --> The headers, so that they will be accessible by the httpLink to Read 
   return {
     headers: {
-      ...headers,
+      // Spread the pre-existing headers
+      ...headers, 
+      // If a token exists, set it back up 
       authorization: token ? `Bearer ${token}` : '',
     },
-  };
+  }
 });
 
 const client = new ApolloClient({
-  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+  // Client side setup for middleware authLink execution. Runs before a request hits the GraphQL API. 
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+
 
 let theme = createTheme({
     typography: {
@@ -127,12 +129,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <div className="App">
-          
           <Home />
-        </div>
-      </ThemeProvider>
-    </ApolloProvider>
+        </ThemeProvider>
+      </ApolloProvider>
   );
 }
 

@@ -1,30 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { geolocated } from "react-geolocated";
-import Title from '../components/Title';
-import JailData from '../components/JailData';
-import CountyDisplay from './CountyDisplay';
-import SlideForward from './SlideForward';
-import outrightHeader from '../assets/images/prison-yard-outright.png';
 import StickyNav from '../components/StickyNav';
-import ForwardButton from '../components/ForwardButton';
 import ButtonStack from '../components/ButtonStack';
-// import { searchData } from '../utils/API';
-// import { readRemoteFile } from 'react-papaparse'
-import { geoLocate } from '../utils/GEO';
+import { browserLocation } from '../utils/GEO';
+import FontDisplay from './FontDisplay';
 import { useQuery } from '@apollo/client';
 import { QUERY_STATES } from '../utils/queries';
 import Local from '../utils/Local';
-import { Grid, Slide, Box, Button } from '@mui/material';
-import { getData } from '../utils/API';
-// Import the `useMutation()` hook from Apollo Client
-import { useMutation } from '@apollo/client';
-// Import the GraphQL mutation
-
-// Import Auth to Apply idToken to User
+import { Grid, Box } from '@mui/material';
 
 
-import { browserLocation } from '../utils/GEO';
-import FontDisplay from './FontDisplay';
 
 export default function Location({ pageNum }) {
     const [userCoords, setUserCoords] = useState({
@@ -37,7 +21,7 @@ export default function Location({ pageNum }) {
 
     const { loading, data } = useQuery(QUERY_STATES);
     const userStates = data?.states || [];
-
+    console.log(userStates)
     const useLocation = detector => {
         
     

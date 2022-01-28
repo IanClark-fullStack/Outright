@@ -1,7 +1,7 @@
 
 const fetch = require('node-fetch');
 const db = require('./connection');
-const { State, StateData } = require('../models');
+const { State } = require('../models');
 const { URLSearchParams } = require('url');
 const encodedParams = new URLSearchParams();
 require('dotenv').config()
@@ -13,6 +13,7 @@ let results;
 let dataArray = [];
 let prisonArray = [];
 let totalData = [];
+require('dotenv').config()
 
 let ranking = [];
 const getRating = async () => {

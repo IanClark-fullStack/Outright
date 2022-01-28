@@ -21,7 +21,7 @@ server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 //handle CORS related issues we might face if we try to access our api from a different dormain.
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
