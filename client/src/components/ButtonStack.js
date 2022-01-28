@@ -1,5 +1,6 @@
 
 import { styled, Stack, Button } from '@mui/material';
+import outrightCompressed from '../assets/outrightCompressed.zip';
 
 const ColorButton = styled(Button)(({ theme }) => ({
     fontFamily: 'neue-haas-grotesk-display, sans-serif',
@@ -35,7 +36,9 @@ const ColorButton = styled(Button)(({ theme }) => ({
 export default function OutlinedButtons() {
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <ColorButton variant="contained" sx={{marginLeft: 0, marginRight: 0,}}>Download</ColorButton>
+            <a className='descLink' style={{textDecoration: 'none', underline: 0, }} href={outrightCompressed}> 
+                <ColorButton variant="contained" sx={{marginLeft: 0, marginRight: 0,}}>Download</ColorButton>
+            </a>
             <ColorButton variant="contained" disabled>Version 1.0</ColorButton>
             <ColorButton variant="contained" disabled>Ⓒ2022</ColorButton>
         </Stack>
