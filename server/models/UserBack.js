@@ -1,9 +1,5 @@
 
 
-
-// import Petition Schema
-// const petitionSchema = require('./Petition');
-
 const userSchema = new Schema(
     {
         email: {
@@ -16,8 +12,6 @@ const userSchema = new Schema(
             ref: 'Location',
             // required: true,
         },
-        // User has signed petition(s)
-        // petitions: [Petition.schema],
     },
     // {
     //     toJSON: {

@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const County = require('./County');
-
 const stateSchema = new Schema(
     {
         state_name: {
